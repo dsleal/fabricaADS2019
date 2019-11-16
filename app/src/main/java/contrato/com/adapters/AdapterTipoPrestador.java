@@ -59,11 +59,13 @@ public class AdapterTipoPrestador extends BaseAdapter {
         TipoPrestador tipoPrestador = parsetItem(i);
 
         TextView descricao;
+        TextView habilitado;
 
         descricao = view.findViewById(R.id.txtTpDesc);
-        //campoEmail = view.findViewById(R.id.txtEmail);
+        habilitado = view.findViewById(R.id.txtTpHabil);
 
         descricao.setText(tipoPrestador.getDescricao()!=null ? tipoPrestador.getDescricao() : "Sem registro");
+        habilitado.setText(tipoPrestador.isDesativado() == true ? "desabilitado" : "habilitado");
 
         return view;
     }

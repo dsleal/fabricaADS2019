@@ -20,6 +20,7 @@ public class Administrador extends AppCompatActivity {
 
        }
 
+
     public void tpPrestador(View view) {
         Intent intent = new Intent(Administrador.this, TTipoPrestador.class);
         intent.putExtra("info","This is activity from card item index  ");

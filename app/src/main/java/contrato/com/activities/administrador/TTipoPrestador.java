@@ -1,8 +1,11 @@
 package contrato.com.activities.administrador;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,11 +30,31 @@ public class TTipoPrestador extends AppCompatActivity {
     public ListView minhaLista;
     public List<TipoPrestador> listTP;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-        setContentView(R.layout.activity_tipo_prestador);
+        setContentView(R.layout.activity_ttipo_prestador);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        atualizar();
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TTipoPrestador.this, AddTipoPrestador.class));
+            }
+        });
+    }
+
+    protected void onResume() {
+        super.onResume();
+        atualizar();
+    }
+
+    private void atualizar() {
 
         /*Pega a referencia do ENDPOINT e do converter(gson)
          * */
@@ -56,7 +79,8 @@ public class TTipoPrestador extends AppCompatActivity {
 
                 AdapterTipoPrestador adapterTipoPrestador = new AdapterTipoPrestador(getApplicationContext(), listTP);
                 minhaLista.setAdapter(adapterTipoPrestador);
-                adapterTipoPrestador.notifyDataSetChanged();}
+                adapterTipoPrestador.notifyDataSetChanged();
+            }
 
             @Override
             public void onFailure(Call<List<TipoPrestador>> call, Throwable t) {
@@ -64,5 +88,7 @@ public class TTipoPrestador extends AppCompatActivity {
             }
         });
 
+    }
 
-    }}
+
+}

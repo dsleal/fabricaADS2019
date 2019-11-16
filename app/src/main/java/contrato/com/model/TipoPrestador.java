@@ -20,9 +20,7 @@ public class TipoPrestador {
     }
 
     public TipoPrestador(String descricao) {
-
         this.descricao = descricao;
-       
     }
 
     public int getCodigo() {

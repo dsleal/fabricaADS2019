@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:id="@+id/AddTpcabecalho"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary"
+        android:padding="10dip">
+        <TextView android:textColor="#FFFFFF"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
+            android:text="@string/llAddTP" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/AddTpcabecalho">
+
+        <EditText
+            android:id="@+id/txtAddTpDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/txtAddTpDesc"
+            android:inputType="textPersonName" />
+
+        <RadioGroup
+            android:id="@+id/rbGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center_vertical">
+
+            <RadioButton
+                android:id="@+id/rbHabilitado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/rbHabilitado" />
+
+            <RadioButton
+                android:id="@+id/rbDesabilitado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rbDesabilitado" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:padding="10dip">
+        <Button
+            android:id="@+id/btnAddTPAdicionar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="adicionar"
+            android:text="@string/btnAdicionar" />
+
+        <Button
+            android:id="@+id/btnAddTPLimpar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="limpar"
+            android:text="@string/btnLimpar" />
+    </LinearLayout>
+
+</RelativeLayout>
