@@ -9,11 +9,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import java.util.List;
-
 import contrato.com.R;
-import contrato.com.activities.Cadastro;
-import contrato.com.adapters.AdapterTipoPrestador;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.TipoPrestador;
 import contrato.com.resource.TipoPrestadorResource;
@@ -33,6 +29,8 @@ public class AddTipoPrestador extends AppCompatActivity {
     }
 
     public void limpar(View view){
+        descricao = findViewById(R.id.txtAddTpDesc);
+        descricao.setText(" ");
     }
 
     public void adicionar(View view){
@@ -45,7 +43,7 @@ public class AddTipoPrestador extends AppCompatActivity {
             public void onResponse(Call<TipoPrestador> call, Response<TipoPrestador> response) {
                TipoPrestador tp = response.body();
                Toast.makeText(AddTipoPrestador.this, "Tipo de prestador = " + tp.getDescricao() + " cadastrado!", Toast.LENGTH_LONG).show();
-               startActivity(new Intent(AddTipoPrestador.this, TTipoPrestador2.class));
+               startActivity(new Intent(AddTipoPrestador.this, TTipoPrestador.class));
            }
 
             @Override

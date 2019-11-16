@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.GridLayout;
 
 import contrato.com.R;
-import contrato.com.activities.administrador.Administrador;
-import contrato.com.activities.administrador.TTipoPrestador;
 import contrato.com.activities.cliente.CadastroCliente;
 import contrato.com.activities.prestador.CadastroPrestador;
 

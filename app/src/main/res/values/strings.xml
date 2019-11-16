@@ -21,13 +21,17 @@
     <string name="cardCliente">Cliente</string>
     <string name="cardOrdemServico">Ordem de Serviço</string>
     <string name="cardSolicitacaoServico">Solicitacao de Servico</string>
-    <string name="title_activity_ttipo_prestador2">TTipoPrestador2</string>
+    <string name="title_activity_ttipo_prestador">Tipo de prestador</string>
     <string name="txtAddTpDesc">Descrição do Tipo Prestaor</string>
     <string name="rbHabilitado">Habilitado</string>
     <string name="rbDesabilitado">Desabilitado</string>
     <string name="btnAdicionar">Adicionar</string>
     <string name="btnLimpar">Limpar</string>
     <string name="llAddTP">Cadastro Tipo de Prestador</string>
+    <string name="txtCodigo">Código:</string>
+    <string name="txtDescTP">Descrição:</string>
+    <string name="txtHabilitado">Situação:</string>
+
 
 
 
