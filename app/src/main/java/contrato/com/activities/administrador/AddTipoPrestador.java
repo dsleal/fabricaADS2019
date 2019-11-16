@@ -23,7 +23,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class AddTipoPrestador extends AppCompatActivity {
-
+    private boolean desabilitado;
+    private EditText descricao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,21 +59,25 @@ public class AddTipoPrestador extends AppCompatActivity {
 
 
     private TipoPrestador getDadosTela(){
+
         TipoPrestador tp = new TipoPrestador();
-        EditText descricao = findViewById(R.id.txtAddTpDesc);
-        RadioButton habilitado = findViewById(R.id.rbHabilitado);
-        RadioButton desabilitado = findViewById(R.id.rbDesabilitado);
-        RadioGroup rbGroup = findViewById(R.id.rbGroup);
-        
+        descricao = findViewById(R.id.txtAddTpDesc);
 
-        rbGroup.is;
+        //Identificar radio button selecionado
+        RadioGroup rbGroup = (RadioGroup) findViewById(R.id.rbGroup);
+        int selectedRadioButtonID = rbGroup.getCheckedRadioButtonId();
+        RadioButton selectedRadioButton = (RadioButton) findViewById(selectedRadioButtonID);
+        String selectedRadioButtonText = selectedRadioButton.getText().toString();
+        if(selectedRadioButtonText.equals("Desabilitado")){
+             desabilitado = true;
+        }
+        else if (selectedRadioButtonText.equals("Habilitado")){
+            desabilitado = false;
+        }
 
-
-        radiobutton.getSelectedCheckbox();
-
+        //setar dados informados no tipo prestador
         tp.setDescricao(descricao.getText().toString());
-        tp.isDesativado()
+        tp.setDesativado(desabilitado);
         return tp;
-        //tp.isDesativado(habilitado.getText();
     }
 }
