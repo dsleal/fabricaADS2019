@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidGridLayout</string>
+    <string name="app_name">Contrato</string>
     <string name="pnlAdm">Painel Administrativo</string>
     <string name="pnlCadastro">Cadastro-se</string>
     <string name="btnCadastro">Cadatre-se</string>
@@ -21,5 +21,17 @@
     <string name="cardCliente">Cliente</string>
     <string name="cardOrdemServico">Ordem de Serviço</string>
     <string name="cardSolicitacaoServico">Solicitacao de Servico</string>
+    <string name="title_activity_ttipo_prestador2">TTipoPrestador2</string>
+    <string name="txtAddTpDesc">Descrição do Tipo Prestaor</string>
+    <string name="rbHabilitado">Habilitado</string>
+    <string name="rbDesabilitado">Desabilitado</string>
+    <string name="btnAdicionar">Adicionar</string>
+    <string name="btnLimpar">Limpar</string>
+    <string name="llAddTP">Cadastro Tipo de Prestador</string>
+
+
+
+
+
 
 </resources>
