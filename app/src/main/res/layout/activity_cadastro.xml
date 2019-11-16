@@ -22,12 +22,12 @@
 
             <TextView
                 android:id="@+id/textGrid"
-                android:text="@string/pnlCadastro"
-                android:textSize="34sp"
-                android:textColor="@android:color/white"
-                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/pnlCadastro"
+                android:textColor="@color/colorAccent"
+                android:textSize="34sp" />
 
         </RelativeLayout>
 

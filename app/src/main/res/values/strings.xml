@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AndroidGridLayout</string>
     <string name="pnlAdm">Painel Administrativo</string>
-    <string name="pnlCadastro">Cadastro-se</string>
+    <string name="pnlCadastro">Cadastre-se</string>
     <string name="btnCadastro">Cadatre-se</string>
     <string name="btnEntrar">Entrar</string>
     <string name="title_activity_cliente">Cliente</string>
@@ -21,5 +21,9 @@
     <string name="cardCliente">Cliente</string>
     <string name="cardOrdemServico">Ordem de Serviço</string>
     <string name="cardSolicitacaoServico">Solicitacao de Servico</string>
+    <string name="lbl_nome">Nome</string>
+    <string name="lbl_endereco">Endereco</string>
+    <string name="title_menu_salvar">Salvar</string>
+    <string name="title_menu_cancelar">Cancelar</string>
 
 </resources>

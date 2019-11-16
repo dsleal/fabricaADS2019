@@ -30,6 +30,7 @@ public class TTipoPrestador extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_tipo_prestador);
 
         /*Pega a referencia do ENDPOINT e do converter(gson)
