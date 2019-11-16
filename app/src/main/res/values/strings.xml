@@ -35,6 +35,8 @@
     <string name="lbl_endereco">Endereço</string>
     <string name="title_menu_salvar">Salvar</string>
     <string name="title_menu_cancelar">Cancelar</string>
+    <string name="teste">teste</string>
+
 
 
 </resources>
