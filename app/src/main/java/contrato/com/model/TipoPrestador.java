@@ -1,15 +1,15 @@
 package contrato.com.model;
 
 public class TipoPrestador {
-    private int codigo;
+    private int id;
     private String descricao;
     private boolean desativado;
 
     public TipoPrestador() {
     }
 
-    public TipoPrestador(int codigo, String descricao, boolean desativado) {
-        this.codigo = codigo;
+    public TipoPrestador(int id, String descricao, boolean desativado) {
+        this.id = id;
         this.descricao = descricao;
         this.desativado = desativado;
     }
@@ -23,12 +23,12 @@ public class TipoPrestador {
         this.descricao = descricao;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public int getId() {
+        return id;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescricao() {

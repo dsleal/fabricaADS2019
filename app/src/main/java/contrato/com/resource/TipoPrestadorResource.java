@@ -15,6 +15,9 @@ public interface TipoPrestadorResource {
     @GET("tipoprestadores")
     Call<List<TipoPrestador>> get();
 
+    @GET("tipoprestadores/{id}")
+    Call<TipoPrestador> get(Integer id);
+
     @POST("tipoprestadores")
     Call<TipoPrestador> post(@Body TipoPrestador tipoPrestador);
 

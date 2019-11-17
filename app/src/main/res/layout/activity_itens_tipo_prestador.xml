@@ -9,10 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/txtCodigo"/>
+        android:text="@string/txtId"/>
 
     <TextView
-        android:id="@+id/txtTpCodigo"
+        android:id="@+id/txtTpId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/txt1"/>
@@ -30,7 +30,7 @@
         android:id="@+id/txtTpDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtTpCodigo"
+        android:layout_below="@id/txtTpId"
         android:layout_toRightOf="@id/txt2"/>
 
     <TextView

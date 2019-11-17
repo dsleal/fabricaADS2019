@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidGridLayout</string>
+    <string name="app_name">Contrato</string>
     <string name="pnlAdm">Painel Administrativo</string>
     <string name="pnlCadastro">Cadastro-se</string>
     <string name="btnCadastro">Cadatre-se</string>
@@ -28,7 +28,8 @@
     <string name="btnAdicionar">Adicionar</string>
     <string name="btnLimpar">Limpar</string>
     <string name="llAddTP">Cadastro Tipo de Prestador</string>
-    <string name="txtCodigo">Código:</string>
+    <string name="llEditTP">Editar Tipo de Prestador</string>
+    <string name="txtId">Código:</string>
     <string name="txtDescTP">Descrição:</string>
     <string name="txtHabilitado">Situação:</string>
     <string name="lbl_nome">Nome</string>
@@ -36,7 +37,8 @@
     <string name="title_menu_salvar">Salvar</string>
     <string name="title_menu_cancelar">Cancelar</string>
     <string name="teste">teste</string>
-
+    <string name="btnAlterar">Alterar</string>
+    <string name="btnRemover">Remover</string>
 
 
 </resources>
