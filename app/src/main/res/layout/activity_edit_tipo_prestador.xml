@@ -29,6 +29,7 @@
 
         <EditText
             android:id="@+id/txtEditCod"
+            android:enabled="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -43,7 +44,7 @@
             android:inputType="textPersonName" />
 
         <RadioGroup
-            android:id="@+id/rbGroup"
+            android:id="@+id/rbEditGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -51,14 +52,13 @@
             android:layout_gravity="center_vertical">
 
             <RadioButton
-                android:id="@+id/rbHabilitado"
+                android:id="@+id/rbEditHabilitado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="@string/rbHabilitado" />
 
             <RadioButton
-                android:id="@+id/rbDesabilitado"
+                android:id="@+id/rbEditDesabilitado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rbDesabilitado" />
