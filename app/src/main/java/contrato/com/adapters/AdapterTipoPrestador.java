@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import contrato.com.R;
@@ -60,12 +62,15 @@ public class AdapterTipoPrestador extends BaseAdapter {
 
         TextView descricao;
         TextView habilitado;
+        TextView id;
 
         descricao = view.findViewById(R.id.txtTpDesc);
         habilitado = view.findViewById(R.id.txtTpHabil);
+        id = view.findViewById(R.id.txtTpId);
 
         descricao.setText(tipoPrestador.getDescricao()!=null ? tipoPrestador.getDescricao() : "Sem registro");
         habilitado.setText(tipoPrestador.isDesativado() == true ? "desabilitado" : "habilitado");
+        id.setText(tipoPrestador.getId()+" ");
 
         return view;
     }
