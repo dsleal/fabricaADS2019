@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.administrador.TTipoPrestador"
-    tools:showIn="@layout/activity_ttipo_prestador">
+    tools:showIn="@layout/activity_ttipo_prestador"
+    tools:ignore="MissingDefaultResource">
 
 </android.support.constraint.ConstraintLayout>

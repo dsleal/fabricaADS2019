@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidGridLayout</string>
+    <string name="app_name">Contrato</string>
     <string name="pnlAdm">Painel Administrativo</string>
     <string name="pnlCadastro">Cadastro-se</string>
     <string name="btnCadastro">Cadatre-se</string>
@@ -36,7 +36,14 @@
     <string name="title_menu_salvar">Salvar</string>
     <string name="title_menu_cancelar">Cancelar</string>
     <string name="teste">teste</string>
-
+    <string name="lbl_cpf_cnpj">Cpf_Cnpj</string>
+    <string name="lbl_email">Email</string>
+    <string name="lbl_telefone">Telefone</string>
+    <string name="lbl_data_nascimento">Data Nascimento</string>
+    <string name="lbl_Identidade">Identidade</string>
+    <string name="lbl_codigo_banco">Codigo Banco</string>
+    <string name="lbl_agencia">Agencia</string>
+    <string name="lbl_conta">Conta</string>
 
 
 </resources>

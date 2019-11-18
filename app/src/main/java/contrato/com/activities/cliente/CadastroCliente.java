@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.EditText;
-import android.widget.Toolbar;
 
 import contrato.com.R;
 
@@ -28,7 +27,7 @@ public class CadastroCliente extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_cadastro_cliente, menu);
+        inflater.inflate(R.menu.menu_cad_cliente, menu);
         return super.onCreateOptionsMenu(menu);
     }
 }

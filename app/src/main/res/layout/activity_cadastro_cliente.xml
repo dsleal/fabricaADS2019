@@ -1,54 +1,134 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.cliente.CadastroCliente">
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    tools:ignore="MissingDefaultResource">
 
-    <TextView
-        android:id="@+id/txtNome"
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+      <TextView
+          android:id="@+id/txtNome"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/lbl_nome" />
+
+      <EditText
+          android:id="@+id/edtNome"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:inputType="textPersonName" />
+
+      <TextView
+          android:id="@+id/txtCpf_Cnpj"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/lbl_cpf_cnpj" />
+
+      <EditText
+          android:id="@+id/edtCpf_Cpnpj"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:inputType="textPersonName" />
+
+      <TextView
+          android:id="@+id/txtEmail"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/lbl_email" />
+
+      <EditText
+          android:id="@+id/edtEmail"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:inputType="textEmailAddress" />
+
+      <TextView
+          android:id="@+id/txtTelefone"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/lbl_telefone" />
+
+      <EditText
+          android:id="@+id/edtTelefone"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:inputType="date" />
+
+      <TextView
+          android:id="@+id/txtData_Nascimento"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/lbl_data_nascimento" />
+
+      <EditText
+          android:id="@+id/edtDataNascimento"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:inputType="textPersonName" />
+
+      <TextView
+          android:id="@+id/txtIdentidade"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/lbl_Identidade" />
+
+      <EditText
+          android:id="@+id/edtIdentidade"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:inputType="textPersonName" />
+
+      <TextView
+          android:id="@+id/txtEndereco"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/lbl_endereco" />
+
+      <EditText
+          android:id="@+id/edtEndereco"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:inputType="textPersonName" />
+
+
+    </LinearLayout>
+
+  </ScrollView>
+  <LinearLayout android:layout_width="fill_parent"
+      android:layout_alignParentBottom="true"
+      android:gravity="center_vertical"
+      android:layout_height="wrap_content"
+      android:padding="10dip">
+    <Button
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/lbl_nome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_weight="1"
+        android:onClick="adicionar"
+        android:text="@string/btnAdicionar" />
 
-    <EditText
-        android:id="@+id/edtNome"
+    <Button
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Nome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/txtNome"
-        app:layout_constraintTop_toBottomOf="@+id/txtNome" />
-
-    <EditText
-        android:id="@+id/edtEndereco"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Endereco"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textEndereco"
-        app:layout_constraintTop_toBottomOf="@+id/textEndereco" />
-
-    <TextView
-        android:id="@+id/textEndereco"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/lbl_endereco"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/edtNome"
-        app:layout_constraintTop_toBottomOf="@+id/edtNome" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_weight="1"
+        android:onClick="limpar"
+        android:text="@string/btnLimpar" />
+  </LinearLayout>
+</RelativeLayout>
