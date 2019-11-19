@@ -27,9 +27,13 @@
     <string name="rbDesabilitado">Desabilitado</string>
     <string name="btnAdicionar">Adicionar</string>
     <string name="btnLimpar">Limpar</string>
+    <string name="btnRemover">Remover</string>
+    <string name="btnAlterar">Alterar</string>
     <string name="llAddTP">Cadastro Tipo de Prestador</string>
     <string name="txtCodigo">Código:</string>
+    <string name="llEditTP">Editar Tipo de Prestador</string>
     <string name="txtDescTP">Descrição:</string>
+    <string name="txtId">Código:</string>
     <string name="txtHabilitado">Situação:</string>
     <string name="lbl_nome">Nome</string>
     <string name="lbl_endereco">Endereço</string>
@@ -44,6 +48,6 @@
     <string name="lbl_codigo_banco">Codigo Banco</string>
     <string name="lbl_agencia">Agencia</string>
     <string name="lbl_conta">Conta</string>
-
+    <string name="title_menu_cad_cli">Cadastro Cliente</string>
 
 </resources>

@@ -80,7 +80,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:ems="10"
-          android:inputType="textPersonName" />
+          android:inputType="date" />
 
       <TextView
           android:id="@+id/txtIdentidade"
@@ -121,14 +121,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:onClick="adicionar"
+        android:onClick="adicionarCli"
         android:text="@string/btnAdicionar" />
 
     <Button
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:onClick="limpar"
+        android:onClick="limparCli"
         android:text="@string/btnLimpar" />
   </LinearLayout>
 </RelativeLayout>
