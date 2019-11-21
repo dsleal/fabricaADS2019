@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.administrador.EditTipoPrestador"></activity>
+        <activity android:name=".activities.administrador.EditSolicitacao"></activity>
+        <activity android:name=".activities.administrador.TOrdemPagamento" />
+        <activity android:name=".activities.administrador.TSolicitacao" />
+        <activity android:name=".activities.administrador.EditTipoPrestador" />
         <activity android:name=".activities.administrador.AddTipoPrestador" />
         <activity
             android:name=".activities.administrador.TTipoPrestador"

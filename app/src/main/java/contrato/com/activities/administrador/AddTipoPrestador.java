@@ -19,7 +19,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class AddTipoPrestador extends AppCompatActivity {
-    private boolean desabilitado;
+    private boolean ativo;
     private EditText descricao;
 
     @Override
@@ -66,16 +66,16 @@ public class AddTipoPrestador extends AppCompatActivity {
         int selectedRadioButtonID = rbGroup.getCheckedRadioButtonId();
         RadioButton selectedRadioButton = (RadioButton) findViewById(selectedRadioButtonID);
         String selectedRadioButtonText = selectedRadioButton.getText().toString();
-        if(selectedRadioButtonText.equals("Desabilitado")){
-             desabilitado = true;
+        if(selectedRadioButtonText.equals("Ativo")){
+             ativo = true;
         }
-        else if (selectedRadioButtonText.equals("Habilitado")){
-            desabilitado = false;
+        else if (selectedRadioButtonText.equals("Desabilitado")){
+            ativo = false;
         }
 
         //setar dados informados no tipo prestador
         tp.setDescricao(descricao.getText().toString());
-        tp.setDesativado(desabilitado);
+        tp.setAtivo(ativo);
         return tp;
     }
 }

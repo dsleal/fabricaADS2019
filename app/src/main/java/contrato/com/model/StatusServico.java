@@ -1,33 +1,25 @@
 package contrato.com.model;
 
-public class TipoPrestador {
-    private int id;
+public class StatusServico {
+
+    private long id;
     private String descricao;
     private boolean ativo;
 
-    public TipoPrestador() {
+    public StatusServico() {
     }
 
-    public TipoPrestador(int id, String descricao, boolean ativo) {
+    public StatusServico(long id, String descricao, boolean ativo) {
         this.id = id;
         this.descricao = descricao;
         this.ativo = ativo;
     }
 
-    public TipoPrestador(String descricao, boolean ativo) {
-        this.descricao = descricao;
-        this.ativo = ativo;
-    }
-
-    public TipoPrestador(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

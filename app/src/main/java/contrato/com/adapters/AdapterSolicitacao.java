@@ -7,23 +7,22 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import contrato.com.R;
+import contrato.com.model.Solicitacao;
 import contrato.com.model.TipoPrestador;
 
-public class AdapterTipoPrestador extends BaseAdapter {
+public class AdapterSolicitacao extends BaseAdapter {
 
 
     Context context;
-    List<TipoPrestador> colecao;
+    List<Solicitacao> colecao;
     LayoutInflater inflter;
 
-    public AdapterTipoPrestador(final Context applicationContext,
-                                final List<TipoPrestador> colecao) {
+    public AdapterSolicitacao(final Context applicationContext,
+                              final List<Solicitacao> colecao) {
         this.context = applicationContext;
         this.colecao = colecao;
 
@@ -39,7 +38,7 @@ public class AdapterTipoPrestador extends BaseAdapter {
         return this.colecao.get(i);
     }
 
-    private TipoPrestador parsetItem(int i){
+    private Solicitacao parsetItem(int i){
         return this.colecao.get(i);
     }
 
@@ -56,27 +55,25 @@ public class AdapterTipoPrestador extends BaseAdapter {
         //no método
         if (view == null) {
             view = LayoutInflater.from(context).
-                    inflate(R.layout.activity_itens_tipo_prestador, viewGroup, false);
+                    inflate(R.layout.activity_itens_solicitacao, viewGroup, false);
         }
 
-        TipoPrestador tipoPrestador = parsetItem(i);
+        Solicitacao solicitacao = parsetItem(i);
 
         TextView descricao;
-        TextView ativo;
+        TextView data;
         TextView id;
 
-        descricao = view.findViewById(R.id.txtTpDesc);
-        ativo = view.findViewById(R.id.txtTpAtivo);
-        id = view.findViewById(R.id.txtTpId);
+        descricao = view.findViewById(R.id.txtSDesc);
+        id = view.findViewById(R.id.txtSId);
+        data = view.findViewById(R.id.txtSData);
 
+        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
 
-        descricao.setText(tipoPrestador.getDescricao()!=null ? tipoPrestador.getDescricao() : "Sem registro");
-        ativo.setText(tipoPrestador.isAtivo() == true ? "ativo" : "desabilitado");
-        id.setText(tipoPrestador.getId()+" ");
+        data.setText(dataFormatada.format(solicitacao.getData()));
+        descricao.setText(solicitacao.getDescricao());
+        id.setText(solicitacao.getId()+" ");
 
         return view;
     }
-
-
-
 }

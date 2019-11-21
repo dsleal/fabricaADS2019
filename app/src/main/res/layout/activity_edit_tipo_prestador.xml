@@ -52,16 +52,16 @@
             android:layout_gravity="center_vertical">
 
             <RadioButton
-                android:id="@+id/rbEditHabilitado"
+                android:id="@+id/rbEditAtivo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/rbHabilitado" />
+                android:text="@string/rbTpAtivo" />
 
             <RadioButton
                 android:id="@+id/rbEditDesabilitado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/rbDesabilitado" />
+                android:text="@string/rbTpDesabilitado" />
         </RadioGroup>
 
     </LinearLayout>

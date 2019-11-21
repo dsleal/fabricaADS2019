@@ -23,8 +23,8 @@
     <string name="cardSolicitacaoServico">Solicitacao de Servico</string>
     <string name="title_activity_ttipo_prestador">Tipo de prestador</string>
     <string name="txtAddTpDesc">Descrição do Tipo Prestaor</string>
-    <string name="rbHabilitado">Habilitado</string>
-    <string name="rbDesabilitado">Desabilitado</string>
+    <string name="rbTpAtivo">Ativo</string>
+    <string name="rbTpDesabilitado">Desabilitado</string>
     <string name="btnAdicionar">Adicionar</string>
     <string name="btnLimpar">Limpar</string>
     <string name="btnRemover">Remover</string>
@@ -34,7 +34,7 @@
     <string name="llEditTP">Editar Tipo de Prestador</string>
     <string name="txtDescTP">Descrição:</string>
     <string name="txtId">Código:</string>
-    <string name="txtHabilitado">Situação:</string>
+    <string name="txtTPAtivo">Situação:</string>
     <string name="lbl_nome">Nome</string>
     <string name="lbl_endereco">Endereço</string>
     <string name="title_menu_salvar">Salvar</string>
@@ -49,5 +49,13 @@
     <string name="lbl_agencia">Agencia</string>
     <string name="lbl_conta">Conta</string>
     <string name="title_menu_cad_cli">Cadastro Cliente</string>
+    <string name="title_activity_tsolicitacao">TSolicitacao</string>
+    <string name="title_activity_edit_solicitacao">EditSolicitacao</string>
+    <string name="txtDescCliente">Desc. Cliente:</string>
+    <string name="txtData">Data:</string>
+    <string name="tbTSolicitacao">Solicitações</string>
+    <string name="txtDescSolic">Desc. da Solicitacao:</string>
+
+
 
 </resources>

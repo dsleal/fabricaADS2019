@@ -21,11 +21,11 @@ import retrofit2.Retrofit;
 public class EditTipoPrestador extends AppCompatActivity {
     EditText codigo;
     EditText descricao;
-    RadioButton rbEditHabilitado;
+    RadioButton rbEditAtivo;
     RadioButton rbEditDesabilitado;
     RadioGroup rbEditGroup;
     int id;
-    Boolean desabilitado;
+    Boolean ativo;
 
 
     @Override
@@ -36,7 +36,7 @@ public class EditTipoPrestador extends AppCompatActivity {
         codigo = findViewById(R.id.txtEditCod);
         descricao = findViewById(R.id.txtEditTpDesc);
         rbEditDesabilitado = findViewById(R.id.rbEditDesabilitado);
-        rbEditHabilitado = findViewById(R.id.rbEditHabilitado);
+        rbEditAtivo = findViewById(R.id.rbEditAtivo);
         Intent intent = getIntent();
         id = intent.getIntExtra("ID",0);
 
@@ -49,12 +49,12 @@ public class EditTipoPrestador extends AppCompatActivity {
                 TipoPrestador tp = response.body();
                 codigo.setText(Integer.toString(tp.getId()));
                 descricao.setText(tp.getDescricao());
-                if(tp.isDesativado()){
-                    rbEditDesabilitado.setChecked(true);
-                    rbEditHabilitado.setChecked(false);
-                }else{
+                if(tp.isAtivo()){
                     rbEditDesabilitado.setChecked(false);
-                    rbEditHabilitado.setChecked(true);
+                    rbEditAtivo.setChecked(true);
+                }else{
+                    rbEditDesabilitado.setChecked(true);
+                    rbEditAtivo.setChecked(false);
                 }
             }
 
@@ -79,13 +79,13 @@ public class EditTipoPrestador extends AppCompatActivity {
         RadioButton selectedRadioButton = (RadioButton) findViewById(selectedRadioButtonID);
         String selectedRadioButtonText = selectedRadioButton.getText().toString();
 
-        if(selectedRadioButtonText.equals("Desabilitado")){
-            desabilitado = true;
+        if(selectedRadioButtonText.equals("Ativo")){
+            ativo = true;
         }
-        else if (selectedRadioButtonText.equals("Habilitado")){
-            desabilitado = false;
+        else if (selectedRadioButtonText.equals("Desabilitado")){
+            ativo = false;
         }
-        tp.setDesativado(desabilitado);
+        tp.setAtivo(ativo);
         Call<TipoPrestador> alterar = tipoPrestador.put(id, tp);
         alterar.enqueue(new Callback<TipoPrestador>() {
             @Override
