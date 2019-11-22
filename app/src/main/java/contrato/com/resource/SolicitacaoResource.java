@@ -17,7 +17,7 @@ public interface SolicitacaoResource {
     Call<List<Solicitacao>> get();
 
     @GET("solicitacoes/{id}")
-    Call<Solicitacao> getPorId(@Path("id") Integer id);
+    Call<Solicitacao> getPorId(@Path("id") Long id);
 
     @POST("solicitacoes")
     Call<Solicitacao> post(@Body Solicitacao solicitacao);

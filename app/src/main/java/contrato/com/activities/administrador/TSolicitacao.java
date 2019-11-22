@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,26 +41,23 @@ public class TSolicitacao extends AppCompatActivity {
     }
 
     protected  void onStart(){
-
         super.onStart();
 
-        /*
-
         Retrofit retrofit = APIClient.getClient();
-        TipoPrestadorResource tipoPrestador = retrofit.create(TipoPrestadorResource.class);
-        Call<List<TipoPrestador>> get = tipoPrestador.get();
-        get.enqueue(new Callback<List<TipoPrestador>>() {
+        SolicitacaoResource solicitacaoResource = retrofit.create(SolicitacaoResource.class);
+        Call<List<Solicitacao>> get = solicitacaoResource.get();
+        get.enqueue(new Callback<List<Solicitacao>>() {
             @Override
-            public void onResponse(Call<List<TipoPrestador>> call, Response<List<TipoPrestador>> response) {
-                minhaLista = findViewById(R.id.lvTPPrestador);
-                listTP = response.body();
-                AdapterTipoPrestador adapterTipoPrestador = new AdapterTipoPrestador(getApplicationContext(), listTP);
-                minhaLista.setAdapter(adapterTipoPrestador);
+            public void onResponse(Call<List<Solicitacao>> call, Response<List<Solicitacao>> response) {
+                minhaLista = findViewById(R.id.lvSolicitacao);
+                listSolicitacao = response.body();
+                AdapterSolicitacao adapterSolicitacao = new AdapterSolicitacao(getApplicationContext(), listSolicitacao);
+                minhaLista.setAdapter(adapterSolicitacao);
                 minhaLista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                        Intent intent = new Intent(TTipoPrestador.this, EditTipoPrestador.class);
-                        intent.putExtra("ID",listTP.get(arg2).getId());
+                        Intent intent = new Intent(TSolicitacao.this, EditSolicitacao.class);
+                        intent.putExtra("ID",listSolicitacao.get(arg2).getId());
                         startActivity(intent);
                         return true;
                     }
@@ -67,14 +65,8 @@ public class TSolicitacao extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<TipoPrestador>> call, Throwable t) {}
+            public void onFailure(Call<List<Solicitacao>> call, Throwable t) {}
         });
-
-
-         */
-
-
-
     }
 
    private void atualizar() {

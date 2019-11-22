@@ -55,6 +55,14 @@
     <string name="txtData">Data:</string>
     <string name="tbTSolicitacao">Solicitações</string>
     <string name="txtDescSolic">Desc. da Solicitacao:</string>
+    <string name="llDetSolicitacao">Detalhamento da Solicitação</string>
+    <string name="btnSCancelar">Cancelar</string>
+    <string name="txtSDCod">Código</string>
+    <string name="txtSDData">Data</string>
+    <string name="txtSDStatus">Status</string>
+    <string name="txtSDCliente">Cliente</string>
+    <string name="txtSDEndereco">Endereço</string>
+    <string name="txtSDDescricao">Descrição de Serviço</string>
 
 
 

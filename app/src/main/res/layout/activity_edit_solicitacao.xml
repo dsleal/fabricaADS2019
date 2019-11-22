@@ -1,9 +1,122 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.administrador.EditSolicitacao">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout android:layout_width="fill_parent"
+        android:id="@+id/AddTpcabecalho"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary"
+        android:padding="10dip">
+
+        <TextView android:textColor="#FFFFFF"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
+            android:text="@string/llDetSolicitacao" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llES"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/AddTpcabecalho">
+
+        <TextView
+            android:id="@+id/txtView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtSDCod"
+            android:textStyle="bold|italic"/>
+
+        <TextView
+            android:id="@+id/txtSDCod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtSDData"
+            android:textStyle="bold|italic"/>
+
+        <TextView
+            android:id="@+id/txtSDData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txtView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtSDStatus"
+            android:textStyle="bold|italic"/>
+
+        <TextView
+            android:id="@+id/txtSDStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txtView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtSDCliente"
+            android:textStyle="bold|italic"/>
+
+        <TextView
+            android:id="@+id/txtSDCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtSDEndereco"
+            android:textStyle="bold|italic"/>
+
+        <TextView
+            android:id="@+id/txtSDEndereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtSDDescricao"
+            android:textStyle="bold|italic"/>
+
+        <TextView
+            android:id="@+id/txtSDDescricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:padding="10dip">
+
+        <Button
+            android:id="@+id/btnAddSCancelar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="cancelar"
+            android:text="@string/btnSCancelar" />
+
+    </LinearLayout>
+
+</RelativeLayout>
