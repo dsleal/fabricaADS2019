@@ -6,14 +6,14 @@ public class Solicitacao {
     private Long id;
     private Float valor;
     private Date data;
-    private StatusServico statusSolicitacao;
+    private StatusSolitacao statusSolicitacao;
     private String descricao;
     private Cliente cliente;
 
     public Solicitacao() {
     }
 
-    public Solicitacao(Long id, Float valor, Date data, StatusServico statusSolicitacao, String descricao, Cliente cliente) {
+    public Solicitacao(Long id, Float valor, Date data, StatusSolitacao statusSolicitacao, String descricao, Cliente cliente) {
         this.id = id;
         this.valor = valor;
         this.data = data;
@@ -46,11 +46,11 @@ public class Solicitacao {
         this.data = data;
     }
 
-    public StatusServico getStatusSolicitacao() {
+    public StatusSolitacao getStatusSolicitacao() {
         return statusSolicitacao;
     }
 
-    public void setStatusSolicitacao(StatusServico statusSolicitacao) {
+    public void setStatusSolicitacao(StatusSolitacao statusSolicitacao) {
         this.statusSolicitacao = statusSolicitacao;
     }
 

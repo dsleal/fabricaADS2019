@@ -23,12 +23,7 @@ public interface SolicitacaoResource {
     Call<Solicitacao> post(@Body Solicitacao solicitacao);
 
     @PUT("solicitacoes/{id}")
-    Call<Solicitacao> put(@Path("id") Integer id, @Body Solicitacao solicitacao);
+    Call<Solicitacao> put(@Path("id") Long id, @Body Solicitacao solicitacao);
 
-    @DELETE("solicitacoes/{id}")
-    Call<Void> delete(@Path("id") Integer id);
-
-    @PATCH("solicitacoes/{id}")
-    Call<Solicitacao> patch(@Body Solicitacao solicitacao);
 
 }

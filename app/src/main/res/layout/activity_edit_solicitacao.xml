@@ -110,11 +110,12 @@
         android:padding="10dip">
 
         <Button
-            android:id="@+id/btnAddSCancelar"
+            android:id="@+id/btnSCancelar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="cancelar"
+            android:enabled="false"
             android:text="@string/btnSCancelar" />
 
     </LinearLayout>
