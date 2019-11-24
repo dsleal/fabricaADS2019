@@ -63,8 +63,14 @@
     <string name="txtSDCliente">Cliente</string>
     <string name="txtSDEndereco">Endereço</string>
     <string name="txtSDDescricao">Descrição de Serviço</string>
-    <string name="txtOSPrestador">Cliente: </string>
-    <string name="txtOSCliente">Prestador: </string>
+    <string name="txtOSPrestador">Cliente </string>
+    <string name="txtOSCliente">Prestador </string>
+    <string name="txtOSCod">Código</string>
+    <string name="txtOSData">Data</string>
+    <string name="txtOSStatus">Status</string>
+    <string name="txtOSEndereco">Endereço</string>
+    <string name="txtOSDescricao">Descrição de Serviço</string>
+    <string name="btnOSCancelar">Cancelar</string>
 
 
 </resources>
