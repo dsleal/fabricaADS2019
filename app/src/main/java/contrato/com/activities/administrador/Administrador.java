@@ -36,5 +36,11 @@ public class Administrador extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void ordemPagamento(View view) {
+        Intent intent = new Intent(Administrador.this, TOrdemPagamento.class);
+        startActivity(intent);
+    }
+
+
 
 }

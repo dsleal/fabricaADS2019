@@ -21,6 +21,8 @@
     <string name="cardCliente">Cliente</string>
     <string name="cardOrdemServico">Ordem de Serviço</string>
     <string name="cardSolicitacaoServico">Solicitacao de Servico</string>
+    <string name="cardPCSolicitacoes">Minhas Solicitações</string>
+    <string name="cardPCOrdemServico">Minhas Ordens de Serviço</string>
     <string name="title_activity_ttipo_prestador">Tipo de prestador</string>
     <string name="txtAddTpDesc">Descrição do Tipo Prestaor</string>
     <string name="rbTpAtivo">Ativo</string>
@@ -56,6 +58,8 @@
     <string name="tbTSolicitacao">Solicitações</string>
     <string name="txtDescSolic">Desc. da Solicitacao:</string>
     <string name="llDetSolicitacao">Detalhamento da Solicitação</string>
+    <string name="llDetOrdemPagamento">Detalhamento da Ordem de Pagamento</string>
+    <string name="llDetOrdemServico">Detalhamento da Ordem de Serviço</string>
     <string name="btnSCancelar">Cancelar</string>
     <string name="txtSDCod">Código</string>
     <string name="txtSDData">Data</string>
@@ -70,7 +74,15 @@
     <string name="txtOSStatus">Status</string>
     <string name="txtOSEndereco">Endereço</string>
     <string name="txtOSDescricao">Descrição de Serviço</string>
+    <string name="txtValor">Valor: </string>
+    <string name="txtOPCod">Código</string>
+    <string name="txtOPData">Data</string>
+    <string name="txtOPDataPagamento">Data Pagamento</string>
+    <string name="txtOPPrestador">Cliente </string>
+    <string name="txtOPCliente">Prestador </string>
+    <string name="txtOPDescricao">Descrição de Serviço</string>
     <string name="btnOSCancelar">Cancelar</string>
+    <string name="btnOPPagar">Pagar</string>
 
 
 </resources>

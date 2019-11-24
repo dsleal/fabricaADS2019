@@ -7,6 +7,7 @@ import android.view.View;
 
 import contrato.com.R;
 import contrato.com.activities.administrador.Administrador;
+import contrato.com.activities.cliente.PainelCliente;
 
 public class Login extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class Login extends AppCompatActivity {
     public void administrador(View view) {
         startActivity(new Intent(this, Administrador.class));
     }
-    public void cadastro(View view) {
-        startActivity(new Intent(this, Cadastro.class));
+    public void cliente(View view) {
+        startActivity(new Intent(this, PainelCliente.class));
     }
 }

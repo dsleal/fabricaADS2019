@@ -13,11 +13,8 @@ import java.util.List;
 
 import contrato.com.R;
 import contrato.com.adapters.AdapterOrdemServico;
-import contrato.com.adapters.AdapterOrdemServico;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.OrdemServico;
-import contrato.com.model.OrdemServico;
-import contrato.com.resource.OrdemServicoResource;
 import contrato.com.resource.OrdemServicoResource;
 import retrofit2.Call;
 import retrofit2.Callback;
