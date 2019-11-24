@@ -42,7 +42,12 @@ public class AddTipoPrestador extends AppCompatActivity {
            @Override
             public void onResponse(Call<TipoPrestador> call, Response<TipoPrestador> response) {
                TipoPrestador tp = response.body();
-               Toast.makeText(AddTipoPrestador.this, "Tipo de prestador  '" + tp.getDescricao() + "' cadastrado!", Toast.LENGTH_LONG).show();
+               if(response.code()==409){
+                   Toast.makeText(AddTipoPrestador.this, "Tipo de prestador já cadastrado!", Toast.LENGTH_LONG).show();
+               }else{
+                   Toast.makeText(AddTipoPrestador.this, "Tipo de prestador  '" + tp.getDescricao() + "' cadastrado!", Toast.LENGTH_LONG).show();
+               }
+
                startActivity(new Intent(AddTipoPrestador.this, TTipoPrestador.class));
            }
 

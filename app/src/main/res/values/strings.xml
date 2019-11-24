@@ -63,7 +63,8 @@
     <string name="txtSDCliente">Cliente</string>
     <string name="txtSDEndereco">Endereço</string>
     <string name="txtSDDescricao">Descrição de Serviço</string>
-
+    <string name="txtOSPrestador">Cliente: </string>
+    <string name="txtOSCliente">Prestador: </string>
 
 
 </resources>

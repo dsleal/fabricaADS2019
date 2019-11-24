@@ -10,6 +10,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+
 import contrato.com.R;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.Solicitacao;
@@ -62,7 +64,10 @@ public class EditSolicitacao extends AppCompatActivity {
                 cliente.setText(solicitacao.getCliente().getNome());
                 descricao.setText(solicitacao.getDescricao());
                 endereco.setText(solicitacao.getCliente().getEndereco().getLogradouro() + ", " + solicitacao.getCliente().getEndereco().getCidade());
-                data.setText(solicitacao.getData().toString());
+
+
+                SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
+                data.setText(dataFormatada.format(solicitacao.getData()));
                 habilitaCancelamento(solicitacao);
             }
 

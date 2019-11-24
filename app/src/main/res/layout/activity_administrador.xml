@@ -249,6 +249,7 @@
         <!-- Ordem de Serviço -->
         <android.support.v7.widget.CardView
             android:id="@+id/cardOrdemServico"
+            android:onClick="ordemServico"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
