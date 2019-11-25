@@ -1,9 +1,10 @@
 package contrato.com.model;
 
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Cliente {
+public class Cliente implements Serializable {
     private long id;
     private String nome;
     private String cpf_cnpj;

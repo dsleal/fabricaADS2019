@@ -3,19 +3,40 @@ package contrato.com.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 import contrato.com.R;
 import contrato.com.activities.administrador.Administrador;
+import contrato.com.activities.administrador.EditOrdemServico;
+import contrato.com.activities.administrador.TOrdemServico;
 import contrato.com.activities.cliente.PainelCliente;
 import contrato.com.activities.prestador.PainelPrestador;
+import contrato.com.adapters.AdapterOrdemServico;
+import contrato.com.boostrap.APIClient;
+import contrato.com.model.Cliente;
+import contrato.com.model.OrdemPagamento;
+import contrato.com.model.OrdemServico;
+import contrato.com.resource.ClienteResource;
+import contrato.com.resource.OrdemPagamentoResource;
+import contrato.com.resource.OrdemServicoResource;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class Login extends AppCompatActivity {
     Spinner spinner;
+    Cliente cli;
     String tipo;
+    Integer id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +57,36 @@ public class Login extends AppCompatActivity {
         if (tipo.equals("Administrador")) {
             startActivity(new Intent(Login.this, Administrador.class));
         } else if (tipo.equals("Cliente")) {
-            startActivity(new Intent(Login.this, PainelCliente.class));
+
+            Cliente cliente = buscarCliente();
+            Intent intent = new Intent(Login.this, PainelCliente.class);
+            intent.putExtra("cliente", cliente);
+            startActivity(intent);
+
         } else if (tipo.equals("Prestador")) {
             startActivity(new Intent(Login.this, PainelPrestador.class));
         } else {
             Toast.makeText(this, "Escolha um tipo", Toast.LENGTH_LONG).show();
         }
-
-
     }
 
+    public Cliente buscarCliente(){
+        id = 99997;
+        Retrofit retrofit = APIClient.getClient();
+        ClienteResource clienteResource = retrofit.create(ClienteResource.class);
+        Call<Cliente> get = clienteResource.getPorId(id);
+        get.enqueue(new Callback<Cliente>() {
+            @Override
+            public void onResponse(Call<Cliente> call, Response<Cliente> response) {
+               cli = response.body();
 
+            }
+
+            @Override
+            public void onFailure(Call<Cliente> call, Throwable t) {
+            }
+        });
+        return cli;
+    }
 }
 
