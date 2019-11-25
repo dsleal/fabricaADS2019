@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import contrato.com.R;

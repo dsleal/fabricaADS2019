@@ -6,6 +6,7 @@
     <string name="pnlCadastro">Cadastro-se</string>
     <string name="btnCadastro">Cadatre-se</string>
     <string name="btnEntrar">Entrar</string>
+    <string name="btnLogin">Acessar</string>
     <string name="title_activity_cliente">Cliente</string>
     <string name="title_activity_prestador">Prestador</string>
     <string name="title_activity_administrador">Administrador</string>
@@ -88,6 +89,9 @@
     <string name="btnOSCancelar">Cancelar</string>
     <string name="btnOPPagar">Pagar</string>
     <string name="title_activity_painel_cliente">Painel Cliente</string>
+    <string name="txtLSenha">Senha</string>
+    <string name="txtLUsuario">Usuário</string>
+    <string name="txtLTipo">Tipo de Acesso</string>
     <string-array name="listLogin">
         <item>Selecione o tipo</item>
         <item>Administrador</item>

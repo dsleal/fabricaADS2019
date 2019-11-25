@@ -4,33 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Login"
-    tools:ignore="MissingDefaultResource">
+    tools:context=".activities.Login">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnCliente"
+        <TextView
+            android:id="@+id/txtLTipo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="cliente"
-            android:text="Cliente" />
+            android:text="@string/txtLTipo" />
+
+        <Spinner
+            android:id="@+id/spinnerLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtLUsuario" />
+
+        <EditText
+            android:id="@+id/txtLUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtLSenha" />
+
+        <EditText
+            android:id="@+id/txtLSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/btnPrestador"
+            android:id="@+id/btnLogin"
+            android:onClick="acessar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="prestador"
-            android:text="Prestador" />
-
-        <Button
-            android:id="@+id/btnAdministrador"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="administrador"
-            android:text="Administrador" />
+            android:layout_gravity="center"
+            android:text="@string/btnLogin" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
