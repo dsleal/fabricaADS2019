@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void login(View view) {
-        startActivity(new Intent(this,Login.class));
+        startActivity(new Intent(this,Login2.class));
     }
     public void telaCadastro(View view) {
         startActivity(new Intent(this,Cadastro.class));
