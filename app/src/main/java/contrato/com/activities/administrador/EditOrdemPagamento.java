@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import contrato.com.R;
@@ -38,10 +39,11 @@ public class EditOrdemPagamento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_ordem_pagamento);
 
+
         codigo = findViewById(R.id.txtOPId);
         cliente = findViewById(R.id.txtOPCliente);
         descricao = findViewById(R.id.txtOPDescricao);
-        prestador = findViewById(R.id.txtOPDescricao);
+        prestador = findViewById(R.id.txtOPPrestador);
         data = findViewById(R.id.txtOPData);
         dataPagamento = findViewById(R.id.txtOPDataPagamento);
         valor = findViewById(R.id.txtOPValor);
@@ -57,8 +59,7 @@ public class EditOrdemPagamento extends AppCompatActivity {
             @Override
             public void onResponse(Call<OrdemPagamento> call, Response<OrdemPagamento> response) {
                 ordemPagamento = response.body();
-
-                codigo.setText(Long.toString(ordemPagamento.getId()));
+                //codigo.setText(Long.toString(ordemPagamento.getId()));
                 cliente.setText(ordemPagamento.getOrdemServico().getSolicitacao().getCliente().getNome());
                 descricao.setText(ordemPagamento.getOrdemServico().getDescricao());
                 prestador.setText(ordemPagamento.getOrdemServico().getPrestador().getNome());
@@ -67,7 +68,9 @@ public class EditOrdemPagamento extends AppCompatActivity {
 
                 SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
                 data.setText(dataFormatada.format(ordemPagamento.getData()));
-                dataPagamento.setText(dataFormatada.format(ordemPagamento.getDataPagamento()));
+                if(ordemPagamento.getDataPagamento()!= null){
+                    dataPagamento.setText(dataFormatada.format(ordemPagamento.getDataPagamento()));
+                }
                 habilitaPagamento(ordemPagamento);
 
             }
@@ -80,13 +83,32 @@ public class EditOrdemPagamento extends AppCompatActivity {
 
     public void habilitaPagamento(OrdemPagamento ordemPagamento){
         btnOPPagar = findViewById(R.id.btnOPPagar);
-        if (ordemPagamento.getDataPagamento().equals(null)){
+        if(ordemPagamento.getDataPagamento()== null){
             btnOPPagar.setEnabled(true);
         }
 
     }
 
     public void pagar(View view){
+
+        ordemPagamento.setDataPagamento(new Date(System.currentTimeMillis())); //alterar para cancelado criar no banco a opção
+
+        Retrofit retrofit = APIClient.getClient();
+        OrdemPagamentoResource ordemPagamentoResource = retrofit.create(OrdemPagamentoResource.class);
+        Call<OrdemPagamento> cancelar = ordemPagamentoResource.put(id, ordemPagamento);
+        cancelar.enqueue(new Callback<OrdemPagamento>() {
+            @Override
+            public void onResponse(Call<OrdemPagamento> call, Response<OrdemPagamento> response) {
+                OrdemPagamento os = response.body();
+                Toast.makeText(getBaseContext(), "Pagamento da ordem " + os.getId() +" realizado!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(EditOrdemPagamento.this, TOrdemPagamento.class));
+            }
+
+            @Override
+            public void onFailure(Call<OrdemPagamento> call, Throwable t) {
+            }
+        });
+
 
 
     }

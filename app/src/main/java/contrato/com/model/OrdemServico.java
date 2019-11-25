@@ -3,7 +3,7 @@ package contrato.com.model;
 import java.sql.Date;
 
 public class OrdemServico {
-    private long id;
+    private Long id;
     private Date data;
     private String descricao;
     private Float valor;
@@ -14,7 +14,7 @@ public class OrdemServico {
     public OrdemServico() {
     }
 
-    public OrdemServico(long id, Date data, String descricao, Float valor, StatusServico statusServico, Prestador prestador, Solicitacao solicitacao) {
+    public OrdemServico(Long id, Date data, String descricao, Float valor, StatusServico statusServico, Prestador prestador, Solicitacao solicitacao) {
         this.id = id;
         this.data = data;
         this.descricao = descricao;
@@ -24,11 +24,11 @@ public class OrdemServico {
         this.solicitacao = solicitacao;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

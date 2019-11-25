@@ -84,7 +84,7 @@
             android:textStyle="bold|italic"/>
 
         <TextView
-            android:id="@+id/txtOPCliente"
+            android:id="@+id/txtOPPrestador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -96,7 +96,7 @@
             android:textStyle="bold|italic"/>
 
         <TextView
-            android:id="@+id/txtOPPrestador"
+            android:id="@+id/txtOPCliente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

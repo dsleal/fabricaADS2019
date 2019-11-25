@@ -45,7 +45,7 @@ public class EditOrdemServico extends AppCompatActivity {
         cliente = findViewById(R.id.txtOSCliente);
         endereco = findViewById(R.id.txtOSEndereco);
         descricao = findViewById(R.id.txtOSDescricao);
-        prestador = findViewById(R.id.txtOSDescricao);
+        prestador = findViewById(R.id.txtOSPrestador);
         data = findViewById(R.id.txtOSData);
 
         Intent intent = getIntent();
@@ -58,12 +58,12 @@ public class EditOrdemServico extends AppCompatActivity {
             @Override
             public void onResponse(Call<OrdemServico> call, Response<OrdemServico> response) {
                 ordemServico = response.body();
-                codigo.setText(Long.toString(ordemServico.getId()));
+                //codigo.setText(Long.toString(ordemServico.getId()));
                 status.setText(ordemServico.getStatusServico().getDescricao());
                 cliente.setText(ordemServico.getSolicitacao().getCliente().getNome());
                 descricao.setText(ordemServico.getDescricao());
                 endereco.setText(ordemServico.getSolicitacao().getCliente().getEndereco().getLogradouro() + ", " + ordemServico.getSolicitacao().getCliente().getEndereco().getCidade());
-
+                prestador.setText(ordemServico.getPrestador().getNome());
 
                 SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
                 data.setText(dataFormatada.format(ordemServico.getData()));

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Contrato</string>
     <string name="pnlAdm">Painel Administrativo</string>
+    <string name="pnlCliente">Painel do Cliente</string>
+    <string name="pnlPrestador">Painel do Prestador</string>
     <string name="pnlCadastro">Cadastro-se</string>
     <string name="btnCadastro">Cadatre-se</string>
     <string name="btnEntrar">Entrar</string>
@@ -23,6 +25,8 @@
     <string name="cardSolicitacaoServico">Solicitacao de Servico</string>
     <string name="cardPCSolicitacoes">Minhas Solicitações</string>
     <string name="cardPCOrdemServico">Minhas Ordens de Serviço</string>
+    <string name="cardPPOrdemServico">Minhas Ordens de Serviço</string>
+    <string name="cardPPSolicitacoes">Solicitações em aberto</string>
     <string name="title_activity_ttipo_prestador">Tipo de prestador</string>
     <string name="txtAddTpDesc">Descrição do Tipo Prestaor</string>
     <string name="rbTpAtivo">Ativo</string>
@@ -67,8 +71,8 @@
     <string name="txtSDCliente">Cliente</string>
     <string name="txtSDEndereco">Endereço</string>
     <string name="txtSDDescricao">Descrição de Serviço</string>
-    <string name="txtOSPrestador">Cliente </string>
-    <string name="txtOSCliente">Prestador </string>
+    <string name="txtOSPrestador">Prestador:</string>
+    <string name="txtOSCliente">Cliente:</string>
     <string name="txtOSCod">Código</string>
     <string name="txtOSData">Data</string>
     <string name="txtOSStatus">Status</string>
@@ -78,11 +82,12 @@
     <string name="txtOPCod">Código</string>
     <string name="txtOPData">Data</string>
     <string name="txtOPDataPagamento">Data Pagamento</string>
-    <string name="txtOPPrestador">Cliente </string>
-    <string name="txtOPCliente">Prestador </string>
+    <string name="txtOPPrestador">Prestador </string>
+    <string name="txtOPCliente">Cliente </string>
     <string name="txtOPDescricao">Descrição de Serviço</string>
     <string name="btnOSCancelar">Cancelar</string>
     <string name="btnOPPagar">Pagar</string>
+    <string name="title_activity_painel_cliente">Painel Cliente</string>
 
 
 </resources>

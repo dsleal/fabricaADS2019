@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.cliente.PainelCliente"></activity>
+        <activity android:name=".activities.prestador.PainelPrestador"></activity>
+        <activity android:name=".activities.cliente.PainelCliente" />
         <activity android:name=".activities.administrador.EditOrdemServico" />
         <activity android:name=".activities.administrador.TOrdemServico" />
         <activity android:name=".activities.administrador.EditSolicitacao" />
