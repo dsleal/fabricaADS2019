@@ -5,40 +5,16 @@
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     tools:ignore="MissingDefaultResource">
-    android:background="#000000">
-
-
-
-
-
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:id="@+id/AddTpcabecalho"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimary"
-        android:padding="10dip">
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center_horizontal"
-            android:text="@string/cardPrestador"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
 
     <ScrollView
+        android:id="@+id/svp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
 
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/AddTpcabecalho"
             android:orientation="vertical">
 
 
@@ -105,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="date" />
 
             <TextView
                 android:id="@+id/txtIdentidade"
@@ -134,17 +110,15 @@
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/txtCodigo_Banco"
+                android:id="@+id/txtBanco"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_codigo_banco" />
+                android:text="@string/lbl_banco" />
 
-            <EditText
-                android:id="@+id/edtCodigoBanco"
+            <Spinner
+                android:id="@+id/spinnerBanco"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:layout_height="40dp" />
 
             <TextView
                 android:id="@+id/txtAgencia"
@@ -170,22 +144,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/txtTipoPrestador"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lblTipoPrestador" />
+
+            <Spinner
+                android:id="@+id/spinnerTipoPrestador"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <TextView
+                android:id="@+id/txtData_Cadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lblDataCadastro" />
+
+            <EditText
+                android:id="@+id/edtDataCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
 
             <Button
-                android:id="@+id/button4"
-                android:layout_width="205dp"
+                android:id="@+id/button"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:onClick="limparPres"
+                android:text="@string/btnLimpar" />
 
             <Button
-                android:id="@+id/button6"
-                android:layout_width="150dp"
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:onClick="adicionarPres"
+                android:text="@string/btnAdicionar" />
 
 
         </LinearLayout>
+
     </ScrollView>
+
 </RelativeLayout>
+

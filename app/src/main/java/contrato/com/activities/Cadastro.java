@@ -23,12 +23,10 @@ public class Cadastro extends AppCompatActivity {
 
     public void cadastroPrestador(View view) {
         Intent intent = new Intent(Cadastro.this, CadastroPrestador.class);
-        intent.putExtra("info","This is activity from card item index  ");
         startActivity(intent);
     }
     public void cadastroCliente(View view) {
         Intent intent = new Intent(Cadastro.this, CadastroCliente.class);
-        intent.putExtra("info","This is activity from card item index  ");
         startActivity(intent);
     }
 

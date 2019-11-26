@@ -25,12 +25,12 @@
         <activity android:name=".activities.administrador.TSolicitacao" />
         <activity android:name=".activities.administrador.EditTipoPrestador" />
         <activity android:name=".activities.administrador.AddTipoPrestador" />
+        <activity android:name=".activities.prestador.CadastroPrestador" />
+        <activity android:name=".activities.cliente.CadastroCliente" />
         <activity
             android:name=".activities.administrador.TTipoPrestador"
             android:label="@string/title_activity_ttipo_prestador"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.prestador.CadastroPrestador" />
-        <activity android:name=".activities.cliente.CadastroCliente" />
         <activity android:name=".activities.Cadastro" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>

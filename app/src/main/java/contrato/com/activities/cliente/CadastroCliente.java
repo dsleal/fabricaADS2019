@@ -1,8 +1,8 @@
 package contrato.com.activities.cliente;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -31,7 +31,7 @@ public class CadastroCliente extends AppCompatActivity {
     private EditText edtDataNascimento;
     private EditText edtIdentidade;
     private EditText edtEndereco;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
 
 
     @Override
@@ -91,9 +91,13 @@ public class CadastroCliente extends AppCompatActivity {
     }
 
 
-    private Cliente getDadosTela(){
+    private Cliente getDadosTela() {
+
+
+
         Endereco endereco = new Endereco();
         Cliente cli = new Cliente();
+
 
         edtNome = findViewById(R.id.edtNome);
         edtCpf_Cpnpj = findViewById(R.id.edtCpf_Cpnpj);
@@ -101,15 +105,20 @@ public class CadastroCliente extends AppCompatActivity {
         edtDataNascimento = findViewById(R.id.edtDataNascimento);
         edtIdentidade = findViewById(R.id.edtIdentidade);
         edtEndereco = findViewById(R.id.edtEndereco);
+        edtTelefone = findViewById(R.id.edtTelefone);
 
         endereco.setId(99990);
         cli.setEndereco(endereco);
         cli.setNome(edtNome.getText().toString());
         cli.setCpf_cnpj(edtCpf_Cpnpj.getText().toString());
         cli.setEmail(edtEmail.getText().toString());
-        //cli.setDt_nascimento(this.dateFormat.parseObject(edtDataNascimento.getText().toString());
-        //cli.setDt_nascimento(new java.sql.Date(1990,10,01));//setDt_nascimento();
+        //cli.setDt_nascimento((String) this.dataFormatada.format(cli.getDt_nascimento()));
+       // cli.setDt_nascimento(dataFormatada.format(cli.get));
+        // cli.setDt_nascimento(edtDataNascimento.getText().toString());
+        //cli.setDt_nascimento(edtDataNascimento.getText().toString());
+        //cli.setDt_nascimento(dataFormatada.format(cli.getDt_nascimento()));
         cli.setIdentidade(edtIdentidade.getText().toString());
+        //cli.setTelefone(edtTelefone.getText().toString());
 
         return cli;
     }

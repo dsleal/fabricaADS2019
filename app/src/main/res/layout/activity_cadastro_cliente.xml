@@ -108,27 +108,22 @@
           android:ems="10"
           android:inputType="textPersonName" />
 
+      <Button
+          android:id="@+id/button3"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:onClick="adicionarCli"
+          android:text="@string/btnAdicionar"/>
+
+      <Button
+          android:id="@+id/button4"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:onClick="limparCli"
+          android:text="@string/btnLimpar" />
 
     </LinearLayout>
 
   </ScrollView>
-  <LinearLayout android:layout_width="fill_parent"
-      android:layout_alignParentBottom="true"
-      android:gravity="center_vertical"
-      android:layout_height="wrap_content"
-      android:padding="10dip">
-    <Button
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="adicionarCli"
-        android:text="@string/btnAdicionar" />
 
-    <Button
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="limparCli"
-        android:text="@string/btnLimpar" />
-  </LinearLayout>
 </RelativeLayout>
