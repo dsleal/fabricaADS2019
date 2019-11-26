@@ -34,7 +34,6 @@ import retrofit2.Retrofit;
 
 public class Login extends AppCompatActivity {
     Spinner spinner;
-    Cliente cli;
     String tipo;
     Integer id;
 
@@ -58,9 +57,9 @@ public class Login extends AppCompatActivity {
             startActivity(new Intent(Login.this, Administrador.class));
         } else if (tipo.equals("Cliente")) {
 
-            Cliente cliente = buscarCliente();
+            //Cliente cliente = buscarCliente();
             Intent intent = new Intent(Login.this, PainelCliente.class);
-            intent.putExtra("cliente", cliente);
+            intent.putExtra("id", 99997);
             startActivity(intent);
 
         } else if (tipo.equals("Prestador")) {
@@ -70,23 +69,6 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    public Cliente buscarCliente(){
-        id = 99997;
-        Retrofit retrofit = APIClient.getClient();
-        ClienteResource clienteResource = retrofit.create(ClienteResource.class);
-        Call<Cliente> get = clienteResource.getPorId(id);
-        get.enqueue(new Callback<Cliente>() {
-            @Override
-            public void onResponse(Call<Cliente> call, Response<Cliente> response) {
-               cli = response.body();
 
-            }
-
-            @Override
-            public void onFailure(Call<Cliente> call, Throwable t) {
-            }
-        });
-        return cli;
-    }
 }
 
