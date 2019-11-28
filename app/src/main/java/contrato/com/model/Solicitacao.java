@@ -3,30 +3,32 @@ package contrato.com.model;
 import java.sql.Date;
 
 public class Solicitacao {
-    private Long id;
+    private Integer id;
     private Float valor;
     private Date data;
-    private StatusSolitacao statusSolicitacao;
+    private StatusSolicitacao statusSolicitacao;
     private String descricao;
     private Cliente cliente;
+    private TipoPrestador tipoPrestador;
 
     public Solicitacao() {
     }
 
-    public Solicitacao(Long id, Float valor, Date data, StatusSolitacao statusSolicitacao, String descricao, Cliente cliente) {
+    public Solicitacao(Integer id, Float valor, Date data, StatusSolicitacao statusSolicitacao, String descricao, Cliente cliente, TipoPrestador tipoPrestador) {
         this.id = id;
         this.valor = valor;
         this.data = data;
         this.statusSolicitacao = statusSolicitacao;
         this.descricao = descricao;
         this.cliente = cliente;
+        this.tipoPrestador = tipoPrestador;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -46,11 +48,11 @@ public class Solicitacao {
         this.data = data;
     }
 
-    public StatusSolitacao getStatusSolicitacao() {
+    public StatusSolicitacao getStatusSolicitacao() {
         return statusSolicitacao;
     }
 
-    public void setStatusSolicitacao(StatusSolitacao statusSolicitacao) {
+    public void setStatusSolicitacao(StatusSolicitacao statusSolicitacao) {
         this.statusSolicitacao = statusSolicitacao;
     }
 
@@ -68,6 +70,14 @@ public class Solicitacao {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public TipoPrestador getTipoPrestador() {
+        return tipoPrestador;
+    }
+
+    public void setTipoPrestador(TipoPrestador tipoPrestador) {
+        this.tipoPrestador = tipoPrestador;
     }
 }
 

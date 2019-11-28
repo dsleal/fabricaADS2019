@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,10 +13,8 @@ import java.text.SimpleDateFormat;
 import contrato.com.R;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.Solicitacao;
-import contrato.com.model.StatusSolitacao;
-import contrato.com.model.TipoPrestador;
+import contrato.com.model.StatusSolicitacao;
 import contrato.com.resource.SolicitacaoResource;
-import contrato.com.resource.TipoPrestadorResource;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +30,7 @@ public class EditSolicitacao extends AppCompatActivity {
     TextView descricao;
     Button btnCancelar;
     Solicitacao solicitacao;
-    Long id;
+    Integer id;
 
 
     @Override
@@ -50,7 +46,7 @@ public class EditSolicitacao extends AppCompatActivity {
         data = findViewById(R.id.txtSDData);
 
         Intent intent = getIntent();
-        id = intent.getLongExtra("ID", 0);
+        id = intent.getIntExtra("ID", 0);
 
         Retrofit retrofit = APIClient.getClient();
         SolicitacaoResource solicitacaoResource = retrofit.create(SolicitacaoResource.class);
@@ -90,7 +86,7 @@ public class EditSolicitacao extends AppCompatActivity {
 
     public void cancelar(View view){
 
-        StatusSolitacao statusSolitacao = new StatusSolitacao();
+        StatusSolicitacao statusSolitacao = new StatusSolicitacao();
         statusSolitacao.setId(99994); //alterar para cancelado criar no banco a opção
 
         solicitacao.setStatusSolicitacao(statusSolitacao);

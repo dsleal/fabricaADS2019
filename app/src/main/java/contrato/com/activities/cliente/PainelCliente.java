@@ -21,16 +21,17 @@ public class PainelCliente extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_painel_cliente);
 
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
 
-        buscarCliente();
-     }
+        // buscarCliente();
+    }
 
 
-    public Cliente buscarCliente(){
+    public Cliente buscarCliente() {
         Cliente cli = new Cliente();
         Retrofit retrofit = APIClient.getClient();
         ClienteResource clienteResource = retrofit.create(ClienteResource.class);
@@ -38,7 +39,7 @@ public class PainelCliente extends AppCompatActivity {
         get.enqueue(new Callback<Cliente>() {
             @Override
             public void onResponse(Call<Cliente> call, Response<Cliente> response) {
-                Cliente cliente =  response.body();
+                Cliente cliente = response.body();
             }
 
             @Override
@@ -48,15 +49,10 @@ public class PainelCliente extends AppCompatActivity {
         return cli;
     }
 
-    public void minhasSolicitacoes(View view){
-        Intent intent = new Intent(PainelCliente.this, TMinhasOrdens.class);
+    public void minhasSolicitacoes(View view) {
+        Intent intent = new Intent(PainelCliente.this, TMinhasSolicitacoes.class);
         startActivity(intent);
     }
 
-
-    public void minhasOrdensServico(View view){
-        Intent intent = new Intent(PainelCliente.this, TMinhasOrdens.class);
-        startActivity(intent);
-    }
 
 }

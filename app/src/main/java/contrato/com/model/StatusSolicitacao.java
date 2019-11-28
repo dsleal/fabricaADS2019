@@ -1,15 +1,15 @@
 package contrato.com.model;
 
-public class StatusSolitacao {
+public class StatusSolicitacao {
 
     private long id;
     private String descricao;
     private boolean ativo;
 
-    public StatusSolitacao() {
+    public StatusSolicitacao() {
     }
 
-    public StatusSolitacao(long id, String descricao, boolean ativo) {
+    public StatusSolicitacao(long id, String descricao, boolean ativo) {
         this.id = id;
         this.descricao = descricao;
         this.ativo = ativo;

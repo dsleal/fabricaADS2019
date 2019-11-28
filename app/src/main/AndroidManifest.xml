@@ -12,17 +12,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.cliente.TMinhasOrdens"></activity>
-        <activity android:name=".activities.cliente.TMinhasSolicitacoes" />
+        <activity android:name=".activities.cliente.EditCSolicitacoes"></activity>
+        <activity android:name=".activities.cliente.AddCSolicitacoes" />
+        <activity
+            android:name=".activities.prestador.TSolicitacoesAberto"
+            android:label="@string/title_activity_tsolicitacoes_aberto"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.cliente.TMinhasSolicitacoes"
+            android:label="@string/title_activity_tminhas_solicitacoes"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.Login" />
         <activity android:name=".activities.prestador.PainelPrestador" />
         <activity android:name=".activities.cliente.PainelCliente" />
         <activity android:name=".activities.administrador.EditOrdemServico" />
-        <activity android:name=".activities.administrador.TOrdemServico" />
+        <activity
+            android:name=".activities.administrador.TOrdemServico"
+            android:label="@string/title_activity_tordemservico" />
         <activity android:name=".activities.administrador.EditSolicitacao" />
-        <activity android:name=".activities.administrador.TOrdemPagamento" />
+        <activity
+            android:name=".activities.administrador.TOrdemPagamento"
+            android:label="@string/title_activity_tordempagamento" />
         <activity android:name=".activities.administrador.EditOrdemPagamento" />
-        <activity android:name=".activities.administrador.TSolicitacao" />
+        <activity
+            android:name=".activities.administrador.TSolicitacao"
+            android:label="@string/title_activity_tsolicitacao" />
         <activity android:name=".activities.administrador.EditTipoPrestador" />
         <activity android:name=".activities.administrador.AddTipoPrestador" />
         <activity android:name=".activities.prestador.CadastroPrestador" />

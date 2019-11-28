@@ -17,13 +17,13 @@ public interface SolicitacaoResource {
     Call<List<Solicitacao>> get();
 
     @GET("solicitacoes/{id}")
-    Call<Solicitacao> getPorId(@Path("id") Long id);
+    Call<Solicitacao> getPorId(@Path("id") Integer id);
 
     @POST("solicitacoes")
     Call<Solicitacao> post(@Body Solicitacao solicitacao);
 
     @PUT("solicitacoes/{id}")
-    Call<Solicitacao> put(@Path("id") Long id, @Body Solicitacao solicitacao);
+    Call<Solicitacao> put(@Path("id") Integer id, @Body Solicitacao solicitacao);
 
 
 }

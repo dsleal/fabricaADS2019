@@ -12,7 +12,8 @@
     <string name="title_prestador">Prestador</string>
     <string name="title_cliente">Cliente</string>
     <string name="title_ordempagamento">Ordem de Pagamento </string>
-    <string name="title_tipoprestador">Tipo de Prestador</string>
+    <string name="title_tipoprestador">Tipo de Prestadores</string>
+    <string name="title_activity_tordempagamento">Ordens de Pagamentos</string>
     <string name="txtTPDesc">Tipo de Prestador</string>
     <string name="cardPrestador">Prestador</string>
     <string name="cardTipoPrestador">Tipo de Prestador</string>
@@ -48,7 +49,8 @@
     <string name="lbl_agencia">Agencia</string>
     <string name="lbl_conta">Conta</string>
     <string name="title_menu_cad_cli">Cadastro Cliente</string>
-    <string name="title_activity_tsolicitacao">TSolicitacao</string>
+    <string name="title_activity_tsolicitacao">Solicitações Cadastradas</string>
+    <string name="title_activity_tordemservico">Ordens de Serviço</string>
     <string name="title_activity_edit_solicitacao">EditSolicitacao</string>
     <string name="txtDescCliente">Desc. Cliente:</string>
     <string name="txtData">Data:</string>
@@ -103,6 +105,21 @@
         <item>Cliente</item>
         <item>Prestador</item>
     </string-array>
-
+    <string name="title_activity_tminhas_solicitacoes">Minhas Solicitações</string>
+    <string name="title_activity_tsolicitacoes_aberto">TSolicitacoesAberto</string>
+    <string name="title_activity_tsolicitacoes">Solicitações Cadastradas</string>
+    <string name="txtAddSolicitacao">Descreva sua necessidade</string>
+    <string name="llAddSol">Nova Solicitacao</string>
+    <string name="txtaddSolTP">Escolha o tipo de prestador</string>
+    <string name="txtTpPrestador">Tipo de Prestador: </string>
+    <string name="btnEditSolAprovar">Aprovar Orçamento</string>
+    <string name="btnEditSolCancelar">Cancelar Solicitação </string>
+    <string name="txtSolCod">Código:</string>
+    <string name="txtSolData">Data</string>
+    <string name="txtSolStatus">Status</string>
+    <string name="txtSolDesc">Descrição</string>
+    <string name="txtSolTP">Tipo de Prestador</string>
+    <string name="txtSolValor">Valor</string>
+    <string name="llEditSolCabec">Dados da Solicitação</string>
 
 </resources>
