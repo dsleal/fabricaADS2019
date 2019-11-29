@@ -52,7 +52,7 @@ public class TTipoPrestador extends AppCompatActivity {
         });
     }
 
-    protected  void onStart(){
+    protected void onStart() {
         super.onStart();
 
         Retrofit retrofit = APIClient.getClient();
@@ -69,7 +69,7 @@ public class TTipoPrestador extends AppCompatActivity {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                         Intent intent = new Intent(TTipoPrestador.this, EditTipoPrestador.class);
-                        intent.putExtra("ID",listTP.get(arg2).getId());
+                        intent.putExtra("ID", listTP.get(arg2).getId());
                         startActivity(intent);
                         return true;
                     }
@@ -77,9 +77,10 @@ public class TTipoPrestador extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<TipoPrestador>> call, Throwable t) {}
+            public void onFailure(Call<List<TipoPrestador>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
-
 
 
     }
@@ -110,7 +111,7 @@ public class TTipoPrestador extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<TipoPrestador>> call, Throwable t) {
-                minhaLista = findViewById(R.id.lvTPPrestador);
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

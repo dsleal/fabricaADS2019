@@ -53,8 +53,7 @@ public class AddTipoPrestador extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<TipoPrestador> call, Throwable t) {
-                Toast.makeText(AddTipoPrestador.this, "Erro ao cadastrar!", Toast.LENGTH_LONG).show();
-
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

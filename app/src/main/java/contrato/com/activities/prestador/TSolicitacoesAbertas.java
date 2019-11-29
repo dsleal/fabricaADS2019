@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class TSolicitacoesAbertas extends AppCompatActivity {
     }
 
 
-    protected  void onStart(){
+    protected void onStart() {
         super.onStart();
 
         Retrofit retrofit = APIClient.getClient();
@@ -57,7 +58,7 @@ public class TSolicitacoesAbertas extends AppCompatActivity {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                         Intent intent = new Intent(TSolicitacoesAbertas.this, EditPSolicitacoes.class);
-                        intent.putExtra("ID",listSolicitacao.get(arg2).getId());
+                        intent.putExtra("ID", listSolicitacao.get(arg2).getId());
                         startActivity(intent);
                         return true;
                     }
@@ -65,13 +66,11 @@ public class TSolicitacoesAbertas extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Solicitacao>> call, Throwable t) {}
+            public void onFailure(Call<List<Solicitacao>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
-
-
-
     }
-
 
 
     private void atualizar() {
@@ -91,7 +90,7 @@ public class TSolicitacoesAbertas extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Solicitacao>> call, Throwable t) {
-                Log.e("error", "onFailure: " + t.getMessage() );
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
