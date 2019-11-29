@@ -46,7 +46,7 @@
 
             <!-- Column 1 -->
             <android.support.v7.widget.CardView
-                android:id="@+id/cardPrestador"
+                android:id="@+id/OrdemPagamentostador"
                 android:onClick="cadastroPrestador"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -67,10 +67,13 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/me_time"
+                        android:src="@drawable/prestador2"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+
+                        />
 
                     <TextView
                         android:text="@string/cardPrestador"
@@ -107,10 +110,12 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/family_time"
+                        android:src="@drawable/cliente2"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        />
 
                     <TextView
                         android:text="@string/cardCliente"

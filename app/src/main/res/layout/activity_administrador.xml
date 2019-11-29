@@ -224,7 +224,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/family_time" />
+                    android:src="@drawable/cliente2"
+                    android:background="@color/colorWhite"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -250,7 +251,7 @@
             android:layout_marginRight="16dp"
             app:cardElevation="8dp"
             app:cardCornerRadius="8dp"
-            >
+            android:background="@color/colorWhite">
 
             <LinearLayout
                 android:layout_gravity="center_horizontal|center_vertical"
@@ -260,7 +261,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/me_time"
+                    android:src="@drawable/prestador2"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

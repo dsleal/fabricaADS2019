@@ -12,17 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.cliente.EditCSolicitacoes"></activity>
-        <activity android:name=".activities.cliente.AddCSolicitacoes" />
+        <activity android:name=".activities.prestador.EditPSolicitacoes"></activity>
         <activity
-            android:name=".activities.prestador.TSolicitacoesAberto"
-            android:label="@string/title_activity_tsolicitacoes_aberto"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".activities.prestador.TSolicitacoesAbertas"
+            android:label="@string/title_activity_tsolicitacoesabertas" />
+        <activity android:name=".activities.cliente.EditCSolicitacoes" />
+        <activity android:name=".activities.cliente.AddCSolicitacoes" />
         <activity
             android:name=".activities.cliente.TMinhasSolicitacoes"
             android:label="@string/title_activity_tminhas_solicitacoes"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.Login" />
+        <activity android:name=".activities.Login"
+            android:label="@string/title_activity_login" />/>
         <activity android:name=".activities.prestador.PainelPrestador" />
         <activity android:name=".activities.cliente.PainelCliente" />
         <activity android:name=".activities.administrador.EditOrdemServico" />

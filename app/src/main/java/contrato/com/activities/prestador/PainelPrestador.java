@@ -17,7 +17,7 @@ public class PainelPrestador extends AppCompatActivity {
     }
 
     public void minhasSolicitacoes(View view){
-        Intent intent = new Intent(PainelPrestador.this, TSolicitacoesAberto.class);
+        Intent intent = new Intent(PainelPrestador.this, TSolicitacoesAbertas.class);
         startActivity(intent);
     }
 

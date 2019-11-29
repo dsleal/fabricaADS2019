@@ -69,7 +69,7 @@ public class EditCSolicitacoes extends AppCompatActivity {
                 descricao.setText(solicitacao.getDescricao());
                 data.setText(dataFormatada.format(solicitacao.getData()));
 
-                if(solicitacao.getValor()!= null){
+                if(solicitacao.getValor()!= null & solicitacao.getValor()!=0){
                     valorServico.setText(solicitacao.getValor().toString());
                 }
                 if(solicitacao.getTipoPrestador()!= null){
@@ -125,35 +125,27 @@ public class EditCSolicitacoes extends AppCompatActivity {
 
     }
     public void aprovarSolicitacao(View view){
+        StatusSolicitacao statusSolicitacao = new StatusSolicitacao();
+        statusSolicitacao.setId(99993);
 
-    }
-
-    /*
-    public void cancelar(View view){
-
-        StatusServico statusServico = new StatusServico();
-        statusServico.setId(99993); //alterar para cancelado criar no banco a opção
-
-        ordemServico.setStatusServico(statusServico);
+        solicitacao.setStatusSolicitacao(statusSolicitacao);
 
         Retrofit retrofit = APIClient.getClient();
-        OrdemServicoResource solicitacaoResource = retrofit.create(OrdemServicoResource.class);
-        Call<OrdemServico> cancelar = solicitacaoResource.put(id, ordemServico);
-        cancelar.enqueue(new Callback<OrdemServico>() {
+        SolicitacaoResource solicitacaoResource = retrofit.create(SolicitacaoResource.class);
+        Call<Solicitacao> cancelar = solicitacaoResource.put(id, solicitacao);
+        cancelar.enqueue(new Callback<Solicitacao>() {
             @Override
-            public void onResponse(Call<OrdemServico> call, Response<OrdemServico> response) {
-                OrdemServico os = response.body();
-                Toast.makeText(getBaseContext(), "Solicitação " + os.getId() +" cancelada!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(EditOrdemServico.this, TOrdemServico.class));
+            public void onResponse(Call<Solicitacao> call, Response<Solicitacao> response) {
+                Solicitacao sol = response.body();
+                Toast.makeText(getBaseContext(), "Preço para solicitação " + sol.getId() +" aprovado! \n Será criada um ordem de serviço!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class));
             }
 
             @Override
-            public void onFailure(Call<OrdemServico> call, Throwable t) {
+            public void onFailure(Call<Solicitacao> call, Throwable t) {
             }
         });
-
-
     }
 
-     */
+
 }
