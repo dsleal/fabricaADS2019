@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:background="@drawable/bg"
+        android:background="@drawable/painel"
         android:weightSum="10"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/prestador2"
+                        android:src="@drawable/ordem_pagamento"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/cliente2"
+                        android:src="@drawable/cliente"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

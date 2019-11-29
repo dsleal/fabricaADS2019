@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:background="@drawable/bg"
+        android:background="@drawable/painel"
         android:weightSum="10"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/me_time"
+                        android:src="@drawable/solicitacao"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/family_time"
+                        android:src="@drawable/ordem_servico"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:background="@drawable/bg"
+        android:background="@drawable/painel"
         android:weightSum="10"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -69,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/lovely_time" />
+                    android:src="@drawable/tipo_prestador" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -108,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/friends" />
+                    android:src="@drawable/solicitacao" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:id="@+id/cardOrdemServico"
+            android:id="@+id/vico"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -147,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/calendar" />
+                    android:src="@drawable/ordem_servico" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -186,7 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/team_time" />
+                    android:src="@drawable/ordem_pagamento" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -224,7 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/cliente2"
+                    android:src="@drawable/cliente"
                     android:background="@color/colorWhite"/>
 
                 <TextView
@@ -261,10 +261,11 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/prestador2"
+                    android:src="@drawable/prestador"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"/>
 
                 <TextView
                     android:text="@string/cardPrestador"
@@ -279,15 +280,7 @@
 
         </android.support.v7.widget.CardView>
 
-        <!-- Cliente -->
 
-        <!-- Tipo de Prestador-->
-
-        <!-- Ordem de Pagamento -->
-
-        <!-- Solicitação de Serviço-->
-
-        <!-- Ordem de Serviço -->
 
     </GridLayout>
 

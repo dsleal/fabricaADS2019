@@ -68,6 +68,18 @@
             android:id="@+id/txtView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/txtSolEndP"
+            android:textStyle="bold|italic"/>
+
+        <TextView
+            android:id="@+id/txtSolEndP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/txtSolDescP"
             android:textStyle="bold|italic"/>
 

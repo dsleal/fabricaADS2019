@@ -21,7 +21,7 @@
     <string name="cardOrdemPagamento">Ordem de Pagamento</string>
     <string name="cardCliente">Cliente</string>
     <string name="cardOrdemServico">Ordem de Serviço</string>
-    <string name="cardSolicitacaoServico">Solicitacao de Servico</string>
+    <string name="cardSolicitacaoServico">Solicitação de Servico</string>
     <string name="title_activity_ttipo_prestador">Tipo de prestador</string>
     <string name="txtAddTpDesc">Descrição do Tipo Prestaor</string>
     <string name="rbTpAtivo">Ativo</string>
@@ -128,6 +128,7 @@
     <string name="txtSolDataP">Data </string>
     <string name="txtSolStatusP">Status </string>
     <string name="txtSolDescP">Descrição </string>
+    <string name="txtSolEndP">Endereço</string>
     <string name="txtSolValorP">Informe o valor do serviço </string>
     <string name="btnEditSolValor">Propor valor</string>
 
