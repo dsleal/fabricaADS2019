@@ -28,7 +28,5 @@ public interface PrestadorResource {
     @DELETE("prestadores/{id}")
     Call<Void> delete(@Path("id") Integer id);
 
-    @PATCH("prestadores/{id}")
-    Call<Prestador> patch(@Body Prestador prestador);
 
 }

@@ -14,6 +14,7 @@ public class Solicitacao {
     public Solicitacao() {
     }
 
+
     public Solicitacao(Integer id, Float valor, Date data, StatusSolicitacao statusSolicitacao, String descricao, Cliente cliente, TipoPrestador tipoPrestador) {
         this.id = id;
         this.valor = valor;

@@ -18,7 +18,6 @@
 
 
       <TextView
-          android:id="@+id/txtNome"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:text="@string/lbl_nome" />
@@ -31,7 +30,6 @@
           android:inputType="textPersonName" />
 
       <TextView
-          android:id="@+id/txtCpf_Cnpj"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:text="@string/lbl_cpf_cnpj" />
@@ -41,10 +39,9 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:ems="10"
-          android:inputType="textPersonName" />
+          android:inputType="number" />
 
       <TextView
-          android:id="@+id/txtEmail"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:text="@string/lbl_email" />
@@ -57,7 +54,6 @@
           android:inputType="textEmailAddress" />
 
       <TextView
-          android:id="@+id/txtTelefone"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:text="@string/lbl_telefone" />
@@ -67,23 +63,9 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:ems="10"
-          android:inputType="date" />
+          android:inputType="number" />
 
       <TextView
-          android:id="@+id/txtData_Nascimento"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/lbl_data_nascimento" />
-
-      <EditText
-          android:id="@+id/edtDataNascimento"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:ems="10"
-          android:inputType="date" />
-
-      <TextView
-          android:id="@+id/txtIdentidade"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:text="@string/lbl_Identidade" />
@@ -93,16 +75,51 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:ems="10"
+          android:inputType="number" />
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/txtLogradouro" />
+
+      <EditText
+          android:id="@+id/edtLogradouro"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ems="10"
           android:inputType="textPersonName" />
 
       <TextView
-          android:id="@+id/txtEndereco"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="@string/lbl_endereco" />
+          android:text="@string/txtCEP" />
 
       <EditText
-          android:id="@+id/edtEndereco"
+          android:id="@+id/edtCEP"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:inputType="number" />
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/txtCidade" />
+
+      <EditText
+          android:id="@+id/edtCidade"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:inputType="textPersonName" />
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/txtEstado" />
+
+      <EditText
+          android:id="@+id/edtEstado"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:ems="10"

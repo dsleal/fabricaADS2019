@@ -1,36 +1,47 @@
 package contrato.com.model;
 
 
-import java.io.Serializable;
 import java.sql.Date;
 
-public class Cliente implements Serializable {
-    private long id;
+public class Cliente {
+    private int id;
     private String nome;
-    private String cpf_cnpj;
+    private String cpfCnpj;
     private String email;
-    private Date dt_nascimento;
+    private Date dtNascimento;
     private String identidade;
     private Endereco endereco;
+    private String telefone;
+    private Date dtCadastro;
 
     public Cliente() {
     }
 
-    public Cliente(long id, String nome, String cpf_cnpj, String email, Date dt_nascimento, String identidade, Endereco endereco) {
+    public Cliente(int id, String nome, String cpfCnpj, String email, Date dtNascimento, String identidade, Endereco endereco, String telefone, Date dtCadastro) {
         this.id = id;
         this.nome = nome;
-        this.cpf_cnpj = cpf_cnpj;
+        this.cpfCnpj = cpfCnpj;
         this.email = email;
-        this.dt_nascimento = dt_nascimento;
+        this.dtNascimento = dtNascimento;
         this.identidade = identidade;
         this.endereco = endereco;
+        this.telefone = telefone;
+        this.dtCadastro = dtCadastro;
     }
 
-    public long getId() {
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -42,12 +53,12 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public String getCpf_cnpj() {
-        return cpf_cnpj;
+    public String getCpfCnpj() {
+        return cpfCnpj;
     }
 
-    public void setCpf_cnpj(String cpf_cnpj) {
-        this.cpf_cnpj = cpf_cnpj;
+    public void setCpfCnpj(String cpfCnpj) {
+        this.cpfCnpj = cpfCnpj;
     }
 
     public String getEmail() {
@@ -58,12 +69,12 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
-    public Date getDt_nascimento() {
-        return dt_nascimento;
+    public Date getDtNascimento() {
+        return dtNascimento;
     }
 
-    public void setDt_nascimento(Date dt_nascimento) {
-        this.dt_nascimento = dt_nascimento;
+    public void setDtNascimento(Date dtNascimento) {
+        this.dtNascimento = dtNascimento;
     }
 
     public String getIdentidade() {
@@ -80,5 +91,13 @@ public class Cliente implements Serializable {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public Date getDtCadastro() {
+        return dtCadastro;
+    }
+
+    public void setDtCadastro(Date dtCadastro) {
+        this.dtCadastro = dtCadastro;
     }
 }

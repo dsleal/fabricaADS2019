@@ -34,6 +34,7 @@ public class EditPSolicitacoes extends AppCompatActivity {
     TextView descricao;
     TextView tipoPrestador;
     TextView valorServico;
+    TextView endereco;
     EditText edtValor;
     Button btnEditSolValor;
 
@@ -43,14 +44,16 @@ public class EditPSolicitacoes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_psolicitacoes);
+
         codigo = findViewById(R.id.txtSolCodP);
         data = findViewById(R.id.txtSolDataP);
         status = findViewById(R.id.txtSolStatusP);
         descricao = findViewById(R.id.txtSolDescP);
         tipoPrestador = findViewById(R.id.txtSolTP);
         valorServico = findViewById(R.id.txtValoP);
-        btnEditSolValor = findViewById(R.id.btnEditSolValor);
         edtValor = findViewById(R.id.edtValor);
+        endereco = findViewById(R.id.txtSolEndP);
+        btnEditSolValor = findViewById(R.id.btnEditSolValor);
 
 
         Intent intent = getIntent();
@@ -65,13 +68,14 @@ public class EditPSolicitacoes extends AppCompatActivity {
             public void onResponse(Call<Solicitacao> call, Response<Solicitacao> response) {
 
                 solicitacao = response.body();
-
                 SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
+
 
                 codigo.setText(solicitacao.getId() + " ");
                 status.setText(solicitacao.getStatusSolicitacao().getDescricao());
                 descricao.setText(solicitacao.getDescricao());
                 data.setText(dataFormatada.format(solicitacao.getData()));
+                endereco.setText(solicitacao.getCliente().getEndereco().toString());
 
                 habilitaAcoes();
 

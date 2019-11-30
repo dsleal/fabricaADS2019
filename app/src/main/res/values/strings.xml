@@ -37,11 +37,10 @@
     <string name="txtId">Código:</string>
     <string name="txtTPAtivo">Situação:</string>
     <string name="lbl_nome">Nome</string>
-    <string name="lbl_endereco">Endereço</string>
     <string name="title_menu_salvar">Salvar</string>
     <string name="title_menu_cancelar">Cancelar</string>
     <string name="teste">teste</string>
-    <string name="lbl_cpf_cnpj">Cpf_Cnpj</string>
+    <string name="lbl_cpf_cnpj">CPF / CNPJ</string>
     <string name="lbl_email">Email</string>
     <string name="lbl_telefone">Telefone</string>
     <string name="lbl_data_nascimento">Data Nascimento</string>
@@ -96,10 +95,15 @@
     <string name="btnOSCancelar">Cancelar</string>
     <string name="btnOPPagar">Pagar</string>
     <string name="title_activity_painel_cliente">Painel Cliente</string>
+    <string name="title_activity_cadastro_cliente">Cadastro de Cliente</string>
     <string name="txtLSenha">Senha</string>
     <string name="txtLUsuario">Usuário</string>
     <string name="txtLTipo">Tipo de Acesso</string>
-
+    <string name="txtEstado">Estado</string>
+    <string name="txtCidade">Cidade</string>
+    <string name="txtCEP">CEP</string>
+    <string name="txtLogradouro">Logradouro</string>
+    <string name="lbl_endereco">Endereço</string>
     <string-array name="listLogin">
         <item>Selecione o tipo</item>
         <item>Administrador</item>

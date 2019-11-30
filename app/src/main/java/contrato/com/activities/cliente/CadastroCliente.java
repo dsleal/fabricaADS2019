@@ -1,14 +1,15 @@
 package contrato.com.activities.cliente;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import contrato.com.R;
@@ -27,45 +28,33 @@ public class CadastroCliente extends AppCompatActivity {
     private EditText edtNome;
     private EditText edtCpf_Cpnpj;
     private EditText edtEmail;
-    private EditText edtTelefone;
-    private EditText edtDataNascimento;
     private EditText edtIdentidade;
-    private EditText edtEndereco;
-    SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
+    private EditText edtLogradouro;
+    private EditText edtCEP;
+    private EditText edtCidade;
+    private EditText edtEstado;
+    private EditText edtTelefone;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_cliente);
-
-        edtNome = (EditText) findViewById(R.id.edtNome);
-        edtEndereco = (EditText) findViewById(R.id.edtEndereco);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_cad_cliente, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
     public void limparCli(View view) {
-        edtNome = findViewById(R.id.edtNome);
-        edtCpf_Cpnpj = findViewById(R.id.edtCpf_Cpnpj);
-        edtEmail = findViewById(R.id.edtEmail);
-        edtTelefone = findViewById(R.id.edtTelefone);
-        edtDataNascimento = findViewById(R.id.edtDataNascimento);
-        edtIdentidade = findViewById(R.id.edtIdentidade);
-        edtEndereco = findViewById(R.id.edtEndereco);
+        setCampos();
 
         edtNome.setText(" ");
         edtCpf_Cpnpj.setText(" ");
         edtEmail.setText(" ");
-        edtTelefone.setText(" ");
-        edtDataNascimento.setText(" ");
         edtIdentidade.setText(" ");
-        edtEndereco.setText(" ");
+        edtLogradouro.setText(" ");
+        edtCEP.setText(" ");
+        edtCidade.setText(" ");
+        edtEstado.setText(" ");
+        edtTelefone.setText(" ");
     }
 
     public void adicionarCli(View view) {
@@ -93,35 +82,39 @@ public class CadastroCliente extends AppCompatActivity {
 
     private Cliente getDadosTela() {
 
-
+        setCampos();
 
         Endereco endereco = new Endereco();
         Cliente cli = new Cliente();
 
+        /*
+        endereco.setLogradouro(edtLogradouro.getText().toString());
+        endereco.setCep(edtCEP.getText().toString());
+        endereco.setCidade(edtCidade.getText().toString());
+        endereco.setEstado(edtEstado.getText().toString());
+         */
+        endereco.setId(99991); //remover tem que corrigir no server
 
-        edtNome = findViewById(R.id.edtNome);
-        edtCpf_Cpnpj = findViewById(R.id.edtCpf_Cpnpj);
-        edtEmail = findViewById(R.id.edtEmail);
-        edtDataNascimento = findViewById(R.id.edtDataNascimento);
-        edtIdentidade = findViewById(R.id.edtIdentidade);
-        edtEndereco = findViewById(R.id.edtEndereco);
-        edtTelefone = findViewById(R.id.edtTelefone);
-
-        endereco.setId(99990);
         cli.setEndereco(endereco);
         cli.setNome(edtNome.getText().toString());
-        cli.setCpf_cnpj(edtCpf_Cpnpj.getText().toString());
+        cli.setCpfCnpj(edtCpf_Cpnpj.getText().toString());
         cli.setEmail(edtEmail.getText().toString());
-        //cli.setDt_nascimento((String) this.dataFormatada.format(cli.getDt_nascimento()));
-       // cli.setDt_nascimento(dataFormatada.format(cli.get));
-        // cli.setDt_nascimento(edtDataNascimento.getText().toString());
-        //cli.setDt_nascimento(edtDataNascimento.getText().toString());
-        //cli.setDt_nascimento(dataFormatada.format(cli.getDt_nascimento()));
+        cli.setDtNascimento(new Date(System.currentTimeMillis()));
         cli.setIdentidade(edtIdentidade.getText().toString());
-        //cli.setTelefone(edtTelefone.getText().toString());
-
+        //cli.setTe(edtTelefone.getText().toString());
+        cli.setDtCadastro(new Date(System.currentTimeMillis()));
         return cli;
     }
 
-
+    private void setCampos(){
+        edtNome = findViewById(R.id.edtNome);
+        edtCpf_Cpnpj = findViewById(R.id.edtCpf_Cpnpj);
+        edtEmail = findViewById(R.id.edtEmail);
+        edtIdentidade = findViewById(R.id.edtIdentidade);
+        edtLogradouro= findViewById(R.id.edtLogradouro);
+        edtCEP = findViewById(R.id.edtCEP);
+        edtCidade= findViewById(R.id.edtCidade);
+        edtEstado = findViewById(R.id.edtEstado);
+        edtTelefone = findViewById(R.id.edtTelefone);
+    }
 }

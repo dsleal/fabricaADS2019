@@ -28,7 +28,5 @@ public interface ClienteResource {
     @DELETE("clientes/{id}")
     Call<Void> delete(@Path("id") Integer id);
 
-    @PATCH("clientes/{id}")
-    Call<Cliente> patch(@Body Cliente cliente);
 
 }
