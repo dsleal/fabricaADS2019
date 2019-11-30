@@ -3,6 +3,7 @@ package contrato.com.activities.administrador;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import contrato.com.R;
+import contrato.com.activities.cliente.EditCSolicitacoes;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.OrdemPagamento;
 import contrato.com.model.OrdemPagamento;
@@ -39,7 +41,6 @@ public class EditOrdemPagamento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_ordem_pagamento);
 
-
         codigo = findViewById(R.id.txtOPId);
         cliente = findViewById(R.id.txtOPCliente);
         descricao = findViewById(R.id.txtOPDescricao);
@@ -47,7 +48,6 @@ public class EditOrdemPagamento extends AppCompatActivity {
         data = findViewById(R.id.txtOPData);
         dataPagamento = findViewById(R.id.txtOPDataPagamento);
         valor = findViewById(R.id.txtOPValor);
-        
         
         Intent intent = getIntent();
         id = intent.getLongExtra("ID", 0);
@@ -58,25 +58,40 @@ public class EditOrdemPagamento extends AppCompatActivity {
         get.enqueue(new Callback<OrdemPagamento>() {
             @Override
             public void onResponse(Call<OrdemPagamento> call, Response<OrdemPagamento> response) {
-                ordemPagamento = response.body();
-                //codigo.setText(Long.toString(ordemPagamento.getId()));
-                cliente.setText(ordemPagamento.getOrdemServico().getSolicitacao().getCliente().getNome());
-                descricao.setText(ordemPagamento.getOrdemServico().getDescricao());
-                prestador.setText(ordemPagamento.getOrdemServico().getPrestador().getNome());
-                valor.setText(ordemPagamento.getValor().toString());
+                if (response.isSuccessful()) {
+                    ordemPagamento = response.body();
+                    cliente.setText(ordemPagamento.getOrdemServico().getSolicitacao().getCliente().getNome());
+                    descricao.setText(ordemPagamento.getOrdemServico().getDescricao());
+                    prestador.setText(ordemPagamento.getOrdemServico().getPrestador().getNome());
+                    valor.setText(ordemPagamento.getValor().toString());
 
+                    SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
+                    data.setText(dataFormatada.format(ordemPagamento.getData()));
+                    if(ordemPagamento.getDataPagamento()!= null){
+                        dataPagamento.setText(dataFormatada.format(ordemPagamento.getDataPagamento()));
+                    }
+                    habilitaPagamento(ordemPagamento);
 
-                SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
-                data.setText(dataFormatada.format(ordemPagamento.getData()));
-                if(ordemPagamento.getDataPagamento()!= null){
-                    dataPagamento.setText(dataFormatada.format(ordemPagamento.getDataPagamento()));
                 }
-                habilitaPagamento(ordemPagamento);
-
+                else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(EditOrdemPagamento.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(EditOrdemPagamento.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(EditOrdemPagamento.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<OrdemPagamento> call, Throwable t) {
+                Toast.makeText(EditOrdemPagamento.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
     }
@@ -91,25 +106,38 @@ public class EditOrdemPagamento extends AppCompatActivity {
 
     public void pagar(View view){
 
-        ordemPagamento.setDataPagamento(new Date(System.currentTimeMillis())); //alterar para cancelado criar no banco a opção
-
+        ordemPagamento.setDataPagamento(new Date(System.currentTimeMillis()));
         Retrofit retrofit = APIClient.getClient();
         OrdemPagamentoResource ordemPagamentoResource = retrofit.create(OrdemPagamentoResource.class);
         Call<OrdemPagamento> cancelar = ordemPagamentoResource.put(id, ordemPagamento);
         cancelar.enqueue(new Callback<OrdemPagamento>() {
             @Override
             public void onResponse(Call<OrdemPagamento> call, Response<OrdemPagamento> response) {
-                OrdemPagamento os = response.body();
-                Toast.makeText(getBaseContext(), "Pagamento da ordem " + os.getId() +" realizado!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(EditOrdemPagamento.this, TOrdemPagamento.class));
+                if (response.isSuccessful()) {
+                    OrdemPagamento os = response.body();
+                    Toast.makeText(getBaseContext(), "Pagamento da ordem " + os.getId() +" realizado!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(EditOrdemPagamento.this, TOrdemPagamento.class));
+                }
+                else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(EditOrdemPagamento.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(EditOrdemPagamento.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(EditOrdemPagamento.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<OrdemPagamento> call, Throwable t) {
+                Toast.makeText(EditOrdemPagamento.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
-
-
-
     }
 }

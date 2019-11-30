@@ -3,6 +3,7 @@ package contrato.com.activities.cliente;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,9 +32,7 @@ public class EditCSolicitacoes extends AppCompatActivity {
     TextView valorServico;
     Button btnEditSolAprovar;
     Button btnEditSolCancelar;
-
     Solicitacao solicitacao;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,7 @@ public class EditCSolicitacoes extends AppCompatActivity {
         descricao = findViewById(R.id.txtSolDesc);
         tipoPrestador = findViewById(R.id.txtSolTP);
         valorServico = findViewById(R.id.txtSolValor);
-        btnEditSolAprovar  = findViewById(R.id.btnEditSolAprovar);
+        btnEditSolAprovar = findViewById(R.id.btnEditSolAprovar);
         btnEditSolCancelar = findViewById(R.id.btnEditSolCancelar);
 
 
@@ -59,49 +58,61 @@ public class EditCSolicitacoes extends AppCompatActivity {
         get.enqueue(new Callback<Solicitacao>() {
             @Override
             public void onResponse(Call<Solicitacao> call, Response<Solicitacao> response) {
+                if (response.isSuccessful()) {
+                    solicitacao = response.body();
 
-                solicitacao = response.body();
+                    SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
 
-                SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
+                    codigo.setText(solicitacao.getId() + " ");
+                    status.setText(solicitacao.getStatusSolicitacao().getDescricao());
+                    descricao.setText(solicitacao.getDescricao());
+                    data.setText(dataFormatada.format(solicitacao.getData()));
 
-                codigo.setText(solicitacao.getId()+" ");
-                status.setText(solicitacao.getStatusSolicitacao().getDescricao());
-                descricao.setText(solicitacao.getDescricao());
-                data.setText(dataFormatada.format(solicitacao.getData()));
+                    if (solicitacao.getValor() != null & solicitacao.getValor() != 0) {
+                        valorServico.setText(solicitacao.getValor().toString());
+                    }
+                    if (solicitacao.getTipoPrestador() != null) {
+                        tipoPrestador.setText(solicitacao.getTipoPrestador().getDescricao());
+                    }
+                    habilitaAcoes();
 
-                if(solicitacao.getValor()!= null & solicitacao.getValor()!=0){
-                    valorServico.setText(solicitacao.getValor().toString());
+                } else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(EditCSolicitacoes.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(EditCSolicitacoes.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(EditCSolicitacoes.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
                 }
-                if(solicitacao.getTipoPrestador()!= null){
-                    tipoPrestador.setText(solicitacao.getTipoPrestador().getDescricao());
-                }
-                habilitaAcoes();
-
             }
-
             @Override
             public void onFailure(Call<Solicitacao> call, Throwable t) {
+                Toast.makeText(EditCSolicitacoes.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
-
     }
 
-
-    public void habilitaAcoes(){
+    public void habilitaAcoes() {
         //cancelamento
         //status: aguard. orcamento ou aguard. aprovação
-        if (solicitacao.getStatusSolicitacao().getId()==99991 | solicitacao.getStatusSolicitacao().getId()==99992  ){
+        if (solicitacao.getStatusSolicitacao().getId() == 99991 | solicitacao.getStatusSolicitacao().getId() == 99992) {
             btnEditSolCancelar.setEnabled(true);
         }
 
         //aprovar
         //status: aguard. aprovação e com valor
-        if (solicitacao.getStatusSolicitacao().getId()==99992 & solicitacao.getValor()!= null ){
+        if (solicitacao.getStatusSolicitacao().getId() == 99992 & solicitacao.getValor() != null) {
             btnEditSolAprovar.setEnabled(true);
         }
     }
 
-    public void cancelarSolicitacao(View view){
+    public void cancelarSolicitacao(View view) {
         StatusSolicitacao statusSolicitacao = new StatusSolicitacao();
         statusSolicitacao.setId(99995);
 
@@ -113,18 +124,34 @@ public class EditCSolicitacoes extends AppCompatActivity {
         cancelar.enqueue(new Callback<Solicitacao>() {
             @Override
             public void onResponse(Call<Solicitacao> call, Response<Solicitacao> response) {
-                Solicitacao sol = response.body();
-                Toast.makeText(getBaseContext(), "Solicitação " + sol.getId() +" cancelada!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class));
+                if (response.isSuccessful()) {
+                    Solicitacao sol = response.body();
+                    Toast.makeText(getBaseContext(), "Solicitação " + sol.getId() + " cancelada!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class));
+                }
+                else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(EditCSolicitacoes.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(EditCSolicitacoes.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(EditCSolicitacoes.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
-
             @Override
             public void onFailure(Call<Solicitacao> call, Throwable t) {
+                Toast.makeText(EditCSolicitacoes.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
-
     }
-    public void aprovarSolicitacao(View view){
+
+    public void aprovarSolicitacao(View view) {
         StatusSolicitacao statusSolicitacao = new StatusSolicitacao();
         statusSolicitacao.setId(99993);
 
@@ -136,16 +163,30 @@ public class EditCSolicitacoes extends AppCompatActivity {
         cancelar.enqueue(new Callback<Solicitacao>() {
             @Override
             public void onResponse(Call<Solicitacao> call, Response<Solicitacao> response) {
-                Solicitacao sol = response.body();
-                Toast.makeText(getBaseContext(), "Preço para solicitação " + sol.getId() +" aprovado! \n Será criada um ordem de serviço!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class));
+                if (response.isSuccessful()) {
+                    Solicitacao sol = response.body();
+                    Toast.makeText(getBaseContext(), "Preço para solicitação " + sol.getId() + " aprovado! \n Será criada um ordem de serviço!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class));
+                }
+                else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(EditCSolicitacoes.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(EditCSolicitacoes.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(EditCSolicitacoes.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
-
             @Override
             public void onFailure(Call<Solicitacao> call, Throwable t) {
+                Toast.makeText(EditCSolicitacoes.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
     }
-
-
 }

@@ -32,6 +32,30 @@
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:text="@string/txtTPCPFCNPJ" />
+
+      <RadioGroup
+          android:id="@+id/radioGroup"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rbCPF"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/rbCPF" />
+
+        <RadioButton
+            android:id="@+id/rbCNPJ"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rbCNPJ" />
+      </RadioGroup>
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
           android:text="@string/lbl_cpf_cnpj" />
 
       <EditText
@@ -124,6 +148,30 @@
           android:layout_height="wrap_content"
           android:ems="10"
           android:inputType="textPersonName" />
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/txtSenha" />
+
+      <EditText
+          android:id="@+id/edtSenha"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:inputType="textPassword" />
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/txtConfirmarSenha" />
+
+      <EditText
+          android:id="@+id/edtConfirmarSenha"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:inputType="textPassword" />
 
       <Button
           android:id="@+id/button3"

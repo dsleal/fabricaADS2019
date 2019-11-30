@@ -21,15 +21,9 @@ public class Cadastro extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
     }
 
-    public void cadastroPrestador(View view) {
-        Intent intent = new Intent(Cadastro.this, CadastroPrestador.class);
-        startActivity(intent);
-    }
     public void cadastroCliente(View view) {
         Intent intent = new Intent(Cadastro.this, CadastroCliente.class);
         startActivity(intent);
     }
-
-
 
 }

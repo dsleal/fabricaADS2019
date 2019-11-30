@@ -3,6 +3,7 @@ package contrato.com.activities.administrador;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -54,37 +55,50 @@ public class EditOrdemServico extends AppCompatActivity {
         get.enqueue(new Callback<OrdemServico>() {
             @Override
             public void onResponse(Call<OrdemServico> call, Response<OrdemServico> response) {
-                ordemServico = response.body();
-                //codigo.setText(Long.toString(ordemServico.getId()));
-                status.setText(ordemServico.getStatusServico().getDescricao());
-                cliente.setText(ordemServico.getSolicitacao().getCliente().getNome());
-                descricao.setText(ordemServico.getDescricao());
-                endereco.setText(ordemServico.getSolicitacao().getCliente().getEndereco().getLogradouro() + ", " + ordemServico.getSolicitacao().getCliente().getEndereco().getCidade());
-                prestador.setText(ordemServico.getPrestador().getNome());
+                if (response.isSuccessful()) {
+                    ordemServico = response.body();
+                    status.setText(ordemServico.getStatusServico().getDescricao());
+                    cliente.setText(ordemServico.getSolicitacao().getCliente().getNome());
+                    descricao.setText(ordemServico.getDescricao());
+                    endereco.setText(ordemServico.getSolicitacao().getCliente().getEndereco().getLogradouro() + ", " + ordemServico.getSolicitacao().getCliente().getEndereco().getCidade());
+                    prestador.setText(ordemServico.getPrestador().getNome());
 
-                SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
-                data.setText(dataFormatada.format(ordemServico.getData()));
-                habilitaCancelamento(ordemServico);
+                    SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
+                    data.setText(dataFormatada.format(ordemServico.getData()));
+                    habilitaCancelamento(ordemServico);
+                } else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(EditOrdemServico.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(EditOrdemServico.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(EditOrdemServico.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<OrdemServico> call, Throwable t) {
+                Toast.makeText(EditOrdemServico.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
     }
 
-    public void habilitaCancelamento(OrdemServico ordemServico){
+    public void habilitaCancelamento(OrdemServico ordemServico) {
         btnCancelar = findViewById(R.id.btnOSCancelar);
-        if (ordemServico.getStatusServico().getId()==99991){
+        if (ordemServico.getStatusServico().getId() == 99991) {
             btnCancelar.setEnabled(true);
         }
-
     }
 
-    public void cancelar(View view){
-
+    public void cancelar(View view) {
         StatusServico statusServico = new StatusServico();
-        statusServico.setId(99993); //alterar para cancelado criar no banco a opção
+        statusServico.setId(99993);
 
         ordemServico.setStatusServico(statusServico);
 
@@ -94,16 +108,30 @@ public class EditOrdemServico extends AppCompatActivity {
         cancelar.enqueue(new Callback<OrdemServico>() {
             @Override
             public void onResponse(Call<OrdemServico> call, Response<OrdemServico> response) {
-                OrdemServico os = response.body();
-                Toast.makeText(getBaseContext(), "Solicitação " + os.getId() +" cancelada!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(EditOrdemServico.this, TOrdemServico.class));
+                if (response.isSuccessful()) {
+                    OrdemServico os = response.body();
+                    Toast.makeText(getBaseContext(), "Solicitação " + os.getId() + " cancelada!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(EditOrdemServico.this, TOrdemServico.class));
+                } else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(EditOrdemServico.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(EditOrdemServico.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(EditOrdemServico.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<OrdemServico> call, Throwable t) {
+                Toast.makeText(EditOrdemServico.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
-
-
     }
 }

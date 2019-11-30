@@ -133,7 +133,12 @@
     <string name="txtSolStatusP">Status </string>
     <string name="txtSolDescP">Descrição </string>
     <string name="txtSolEndP">Endereço</string>
+    <string name="txtSenha">Senha</string>
+    <string name="txtConfirmarSenha">Confirmar Senha</string>
     <string name="txtSolValorP">Informe o valor do serviço </string>
     <string name="btnEditSolValor">Propor valor</string>
+    <string name="txtTPCPFCNPJ">Tipo de Cliente</string>
+    <string name="rbCPF">CPF</string>
+    <string name="rbCNPJ">CNPJ</string>
 
 </resources>

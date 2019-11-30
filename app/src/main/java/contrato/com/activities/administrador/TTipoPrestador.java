@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -61,24 +62,40 @@ public class TTipoPrestador extends AppCompatActivity {
         get.enqueue(new Callback<List<TipoPrestador>>() {
             @Override
             public void onResponse(Call<List<TipoPrestador>> call, Response<List<TipoPrestador>> response) {
-                minhaLista = findViewById(R.id.lvTPPrestador);
-                listTP = response.body();
-                AdapterTipoPrestador adapterTipoPrestador = new AdapterTipoPrestador(getApplicationContext(), listTP);
-                minhaLista.setAdapter(adapterTipoPrestador);
-                minhaLista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                        Intent intent = new Intent(TTipoPrestador.this, EditTipoPrestador.class);
-                        intent.putExtra("ID", listTP.get(arg2).getId());
-                        startActivity(intent);
-                        return true;
+                if (response.isSuccessful()) {
+                    minhaLista = findViewById(R.id.lvTPPrestador);
+                    listTP = response.body();
+                    AdapterTipoPrestador adapterTipoPrestador = new AdapterTipoPrestador(getApplicationContext(), listTP);
+                    minhaLista.setAdapter(adapterTipoPrestador);
+                    minhaLista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                        @Override
+                        public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                            Intent intent = new Intent(TTipoPrestador.this, EditTipoPrestador.class);
+                            intent.putExtra("ID", listTP.get(arg2).getId());
+                            startActivity(intent);
+                            return true;
+                        }
+                    });
+                }
+                else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(TTipoPrestador.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(TTipoPrestador.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(TTipoPrestador.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
                     }
-                });
+                }
             }
 
             @Override
             public void onFailure(Call<List<TipoPrestador>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(TTipoPrestador.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
 
@@ -91,27 +108,38 @@ public class TTipoPrestador extends AppCompatActivity {
     }
 
     private void atualizar() {
-
         Retrofit retrofit = APIClient.getClient();
         TipoPrestadorResource tipoPrestador = retrofit.create(TipoPrestadorResource.class);
         Call<List<TipoPrestador>> get = tipoPrestador.get();
         get.enqueue(new Callback<List<TipoPrestador>>() {
             @Override
             public void onResponse(Call<List<TipoPrestador>> call, Response<List<TipoPrestador>> response) {
-                //Log.e("response retrofit", "onResponse: " + response.code() );
+                if (response.isSuccessful()) {
+                    minhaLista = findViewById(R.id.lvTPPrestador);
+                    listTP = response.body();
 
-                //ENTRADA DE DADOS
-                minhaLista = findViewById(R.id.lvTPPrestador);
-                listTP = response.body();
-
-                AdapterTipoPrestador adapterTipoPrestador = new AdapterTipoPrestador(getApplicationContext(), listTP);
-                minhaLista.setAdapter(adapterTipoPrestador);
-                adapterTipoPrestador.notifyDataSetChanged();
+                    AdapterTipoPrestador adapterTipoPrestador = new AdapterTipoPrestador(getApplicationContext(), listTP);
+                    minhaLista.setAdapter(adapterTipoPrestador);
+                    adapterTipoPrestador.notifyDataSetChanged();
+                }
+                else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(TTipoPrestador.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(TTipoPrestador.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(TTipoPrestador.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
-
             @Override
             public void onFailure(Call<List<TipoPrestador>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(TTipoPrestador.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
 

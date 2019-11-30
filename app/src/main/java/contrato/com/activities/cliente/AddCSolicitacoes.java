@@ -48,19 +48,35 @@ public class AddCSolicitacoes extends AppCompatActivity {
         get.enqueue(new Callback<List<TipoPrestador>>() {
             @Override
             public void onResponse(Call<List<TipoPrestador>> call, Response<List<TipoPrestador>> response) {
-                Spinner spinnerTP= (Spinner) findViewById(R.id.spinnerSTP);
-                List<TipoPrestador> tipoPrestadors = response.body();
-                ArrayAdapter<TipoPrestador> adapterSpinner = new ArrayAdapter<TipoPrestador>(AddCSolicitacoes.this, android.R.layout.simple_list_item_1, tipoPrestadors);
-                spinnerTP.setAdapter(adapterSpinner);
+                if (response.isSuccessful()) {
+                    Spinner spinnerTP = (Spinner) findViewById(R.id.spinnerSTP);
+                    List<TipoPrestador> tipoPrestadors = response.body();
+                    ArrayAdapter<TipoPrestador> adapterSpinner = new ArrayAdapter<TipoPrestador>(AddCSolicitacoes.this, android.R.layout.simple_list_item_1, tipoPrestadors);
+                    spinnerTP.setAdapter(adapterSpinner);
+                } else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(AddCSolicitacoes.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(AddCSolicitacoes.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(AddCSolicitacoes.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<List<TipoPrestador>> call, Throwable t) {
+                Toast.makeText(AddCSolicitacoes.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
     }
 
-    public void adicionar(View view){
+    public void adicionar(View view) {
         Solicitacao sol = getDadosTela();
         Retrofit retrofit = APIClient.getClient();
         SolicitacaoResource solicitacaoResource = retrofit.create(SolicitacaoResource.class);
@@ -68,22 +84,34 @@ public class AddCSolicitacoes extends AppCompatActivity {
         post.enqueue(new Callback<Solicitacao>() {
             @Override
             public void onResponse(Call<Solicitacao> call, Response<Solicitacao> response) {
-                Solicitacao sol = response.body();
-                Toast.makeText(AddCSolicitacoes.this, "Solitação para um " + sol.getTipoPrestador().getDescricao() + " cadastrada!", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(AddCSolicitacoes.this, TMinhasSolicitacoes.class));
+                if (response.isSuccessful()) {
+                    Solicitacao sol = response.body();
+                    Toast.makeText(AddCSolicitacoes.this, "Solitação para um " + sol.getTipoPrestador().getDescricao() + " cadastrada!", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(AddCSolicitacoes.this, TMinhasSolicitacoes.class));
+                } else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(AddCSolicitacoes.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(AddCSolicitacoes.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(AddCSolicitacoes.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<Solicitacao> call, Throwable t) {
-                Log.d("teset", "onFailure: ");
-                //Toast.makeText(AddTipoPrestador.this, "Erro ao cadastrar!", Toast.LENGTH_LONG).show();
-
+                Toast.makeText(AddCSolicitacoes.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
-
     }
 
-    private Solicitacao getDadosTela(){
+    private Solicitacao getDadosTela() {
         Solicitacao sol = new Solicitacao();
         StatusSolicitacao stSol = new StatusSolicitacao();
         Cliente cli = new Cliente();
@@ -102,10 +130,8 @@ public class AddCSolicitacoes extends AppCompatActivity {
         //setar dados da tela
         sol.setDescricao(descricao.getText().toString());
         sol.setTipoPrestador((TipoPrestador) tipoPrestador.getSelectedItem());
-        sol.setData(new Date(System.currentTimeMillis()));;
+        sol.setData(new Date(System.currentTimeMillis()));
 
         return sol;
     }
-
-
 }

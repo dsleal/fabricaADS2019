@@ -19,8 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.administrador.Administrador" />
-
-        <activity android:name=".activities.prestador.EditPSolicitacoes"></activity>
+        <activity android:name=".activities.prestador.EditPSolicitacoes" />
         <activity
             android:name=".activities.prestador.TSolicitacoesAbertas"
             android:label="@string/title_activity_tsolicitacoesabertas" />
@@ -30,7 +29,8 @@
             android:name=".activities.cliente.TMinhasSolicitacoes"
             android:label="@string/title_activity_tminhas_solicitacoes"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.Login"
+        <activity
+            android:name=".activities.Login"
             android:label="@string/title_activity_login" />
         <activity android:name=".activities.prestador.PainelPrestador" />
         <activity android:name=".activities.cliente.PainelCliente" />
@@ -49,14 +49,14 @@
         <activity android:name=".activities.administrador.EditTipoPrestador" />
         <activity android:name=".activities.administrador.AddTipoPrestador" />
         <activity android:name=".activities.prestador.CadastroPrestador" />
-        <activity android:name=".activities.cliente.CadastroCliente"
-            android:label="@string/title_activity_cadastro_cliente"/>
+        <activity
+            android:name=".activities.cliente.CadastroCliente"
+            android:label="@string/title_activity_cadastro_cliente" />
         <activity
             android:name=".activities.administrador.TTipoPrestador"
             android:label="@string/title_activity_ttipo_prestador"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.Cadastro" />
     </application>
-
 
 </manifest>

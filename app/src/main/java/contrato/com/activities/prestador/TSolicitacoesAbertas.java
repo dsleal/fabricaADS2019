@@ -50,24 +50,38 @@ public class TSolicitacoesAbertas extends AppCompatActivity {
         get.enqueue(new Callback<List<Solicitacao>>() {
             @Override
             public void onResponse(Call<List<Solicitacao>> call, Response<List<Solicitacao>> response) {
-                minhaLista = findViewById(R.id.lvPSolicitacoesAbertas);
-                listSolicitacao = response.body();
-                AdapterClienteSolicitacao adapterSolicitacao = new AdapterClienteSolicitacao(getApplicationContext(), listSolicitacao);
-                minhaLista.setAdapter(adapterSolicitacao);
-                minhaLista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                        Intent intent = new Intent(TSolicitacoesAbertas.this, EditPSolicitacoes.class);
-                        intent.putExtra("ID", listSolicitacao.get(arg2).getId());
-                        startActivity(intent);
-                        return true;
+                if (response.isSuccessful()) {
+                    minhaLista = findViewById(R.id.lvPSolicitacoesAbertas);
+                    listSolicitacao = response.body();
+                    AdapterClienteSolicitacao adapterSolicitacao = new AdapterClienteSolicitacao(getApplicationContext(), listSolicitacao);
+                    minhaLista.setAdapter(adapterSolicitacao);
+                    minhaLista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                        @Override
+                        public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                            Intent intent = new Intent(TSolicitacoesAbertas.this, EditPSolicitacoes.class);
+                            intent.putExtra("ID", listSolicitacao.get(arg2).getId());
+                            startActivity(intent);
+                            return true;
+                        }
+                    });
+                } else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(TSolicitacoesAbertas.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(TSolicitacoesAbertas.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(TSolicitacoesAbertas.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
                     }
-                });
+                }
             }
-
             @Override
             public void onFailure(Call<List<Solicitacao>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(TSolicitacoesAbertas.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
     }
@@ -80,21 +94,34 @@ public class TSolicitacoesAbertas extends AppCompatActivity {
         get.enqueue(new Callback<List<Solicitacao>>() {
             @Override
             public void onResponse(Call<List<Solicitacao>> call, Response<List<Solicitacao>> response) {
-                minhaLista = findViewById(R.id.lvPSolicitacoesAbertas);
-                listSolicitacao = response.body();
+                if (response.isSuccessful()) {
+                    minhaLista = findViewById(R.id.lvPSolicitacoesAbertas);
+                    listSolicitacao = response.body();
 
-                AdapterSolicitacao adapterSolicitacao = new AdapterSolicitacao(getApplicationContext(), listSolicitacao);
-                minhaLista.setAdapter(adapterSolicitacao);
-                adapterSolicitacao.notifyDataSetChanged();
+                    AdapterSolicitacao adapterSolicitacao = new AdapterSolicitacao(getApplicationContext(), listSolicitacao);
+                    minhaLista.setAdapter(adapterSolicitacao);
+                    adapterSolicitacao.notifyDataSetChanged();
+                }
+                else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(TSolicitacoesAbertas.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(TSolicitacoesAbertas.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(TSolicitacoesAbertas.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<List<Solicitacao>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(TSolicitacoesAbertas.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
-
     }
-
-
 }

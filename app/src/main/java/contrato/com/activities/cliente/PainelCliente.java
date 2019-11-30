@@ -3,7 +3,9 @@ package contrato.com.activities.cliente;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import contrato.com.R;
 import contrato.com.boostrap.APIClient;
@@ -39,11 +41,28 @@ public class PainelCliente extends AppCompatActivity {
         get.enqueue(new Callback<Cliente>() {
             @Override
             public void onResponse(Call<Cliente> call, Response<Cliente> response) {
-                Cliente cliente = response.body();
+                if (response.isSuccessful()) {
+                    Cliente cliente = response.body();
+                }
+                else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(PainelCliente.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(PainelCliente.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(PainelCliente.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<Cliente> call, Throwable t) {
+                Toast.makeText(PainelCliente.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
         return cli;

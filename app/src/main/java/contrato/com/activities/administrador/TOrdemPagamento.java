@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class TOrdemPagamento extends AppCompatActivity {
         atualizar();
     }
 
-    protected  void onStart(){
+    protected void onStart() {
         super.onStart();
         Retrofit retrofit = APIClient.getClient();
         OrdemPagamentoResource OrdemPagamentoResource = retrofit.create(OrdemPagamentoResource.class);
@@ -43,23 +44,41 @@ public class TOrdemPagamento extends AppCompatActivity {
         get.enqueue(new Callback<List<OrdemPagamento>>() {
             @Override
             public void onResponse(Call<List<OrdemPagamento>> call, Response<List<OrdemPagamento>> response) {
-                minhaLista = findViewById(R.id.lvOrdemPagamento);
-                listOrdemPagamento = response.body();
-                AdapterOrdemPagamento adapterOrdemPagamento = new AdapterOrdemPagamento(getApplicationContext(), listOrdemPagamento);
-                minhaLista.setAdapter(adapterOrdemPagamento);
-                minhaLista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                        Intent intent = new Intent(TOrdemPagamento.this, EditOrdemPagamento.class);
-                        intent.putExtra("ID",listOrdemPagamento.get(arg2).getId());
-                        startActivity(intent);
-                        return true;
+                if (response.isSuccessful()) {
+                    minhaLista = findViewById(R.id.lvOrdemPagamento);
+                    listOrdemPagamento = response.body();
+                    AdapterOrdemPagamento adapterOrdemPagamento = new AdapterOrdemPagamento(getApplicationContext(), listOrdemPagamento);
+                    minhaLista.setAdapter(adapterOrdemPagamento);
+                    minhaLista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                        @Override
+                        public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                            Intent intent = new Intent(TOrdemPagamento.this, EditOrdemPagamento.class);
+                            intent.putExtra("ID", listOrdemPagamento.get(arg2).getId());
+                            startActivity(intent);
+                            return true;
+                        }
+                    });
+
+                } else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(TOrdemPagamento.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(TOrdemPagamento.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(TOrdemPagamento.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
                     }
-                });
+                }
             }
 
             @Override
-            public void onFailure(Call<List<OrdemPagamento>> call, Throwable t) {}
+            public void onFailure(Call<List<OrdemPagamento>> call, Throwable t) {
+                Toast.makeText(TOrdemPagamento.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
+            }
         });
     }
 
@@ -71,19 +90,34 @@ public class TOrdemPagamento extends AppCompatActivity {
         get.enqueue(new Callback<List<OrdemPagamento>>() {
             @Override
             public void onResponse(Call<List<OrdemPagamento>> call, Response<List<OrdemPagamento>> response) {
-                minhaLista = findViewById(R.id.lvOrdemPagamento);
-                listOrdemPagamento = response.body();
+                if (response.isSuccessful()) {
+                    minhaLista = findViewById(R.id.lvOrdemPagamento);
+                    listOrdemPagamento = response.body();
 
-                AdapterOrdemPagamento adapterOrdemPagamento = new AdapterOrdemPagamento(getApplicationContext(), listOrdemPagamento);
-                minhaLista.setAdapter(adapterOrdemPagamento);
-                adapterOrdemPagamento.notifyDataSetChanged();
+                    AdapterOrdemPagamento adapterOrdemPagamento = new AdapterOrdemPagamento(getApplicationContext(), listOrdemPagamento);
+                    minhaLista.setAdapter(adapterOrdemPagamento);
+                    adapterOrdemPagamento.notifyDataSetChanged();
+
+                } else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(TOrdemPagamento.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(TOrdemPagamento.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(TOrdemPagamento.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<List<OrdemPagamento>> call, Throwable t) {
-                Log.e("error", "onFailure: " + t.getMessage());
+                Toast.makeText(TOrdemPagamento.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
-
     }
 }

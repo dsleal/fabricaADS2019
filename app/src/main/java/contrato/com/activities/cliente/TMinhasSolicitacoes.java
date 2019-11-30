@@ -6,10 +6,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,12 +54,11 @@ public class TMinhasSolicitacoes extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(TMinhasSolicitacoes.this, AddCSolicitacoes.class));
-
             }
         });
     }
 
-    protected  void onStart(){
+    protected void onStart() {
         super.onStart();
 
         Retrofit retrofit = APIClient.getClient();
@@ -66,27 +67,41 @@ public class TMinhasSolicitacoes extends AppCompatActivity {
         get.enqueue(new Callback<List<Solicitacao>>() {
             @Override
             public void onResponse(Call<List<Solicitacao>> call, Response<List<Solicitacao>> response) {
-                minhaLista = findViewById(R.id.lvCSolicitacao);
-                listSolicitacao = response.body();
-                AdapterClienteSolicitacao adapterSolicitacao = new AdapterClienteSolicitacao(getApplicationContext(), listSolicitacao);
-                minhaLista.setAdapter(adapterSolicitacao);
-                minhaLista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                        Intent intent = new Intent(TMinhasSolicitacoes.this, EditCSolicitacoes.class);
-                        intent.putExtra("ID",listSolicitacao.get(arg2).getId());
-                        startActivity(intent);
-                        return true;
+                if (response.isSuccessful()) {
+                    minhaLista = findViewById(R.id.lvCSolicitacao);
+                    listSolicitacao = response.body();
+                    AdapterClienteSolicitacao adapterSolicitacao = new AdapterClienteSolicitacao(getApplicationContext(), listSolicitacao);
+                    minhaLista.setAdapter(adapterSolicitacao);
+                    minhaLista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                        @Override
+                        public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                            Intent intent = new Intent(TMinhasSolicitacoes.this, EditCSolicitacoes.class);
+                            intent.putExtra("ID", listSolicitacao.get(arg2).getId());
+                            startActivity(intent);
+                            return true;
+                        }
+                    });
+                } else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(TMinhasSolicitacoes.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(TMinhasSolicitacoes.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(TMinhasSolicitacoes.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
                     }
-                });
+                }
             }
 
             @Override
-            public void onFailure(Call<List<Solicitacao>> call, Throwable t) {}
+            public void onFailure(Call<List<Solicitacao>> call, Throwable t) {
+                Toast.makeText(TMinhasSolicitacoes.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
+            }
         });
-
-
-
     }
 
 
@@ -98,21 +113,33 @@ public class TMinhasSolicitacoes extends AppCompatActivity {
         get.enqueue(new Callback<List<Solicitacao>>() {
             @Override
             public void onResponse(Call<List<Solicitacao>> call, Response<List<Solicitacao>> response) {
-                minhaLista = findViewById(R.id.lvCSolicitacao);
-                listSolicitacao = response.body();
+                if (response.isSuccessful()) {
+                    minhaLista = findViewById(R.id.lvCSolicitacao);
+                    listSolicitacao = response.body();
 
-                AdapterClienteSolicitacao adapterSolicitacao = new AdapterClienteSolicitacao(getApplicationContext(), listSolicitacao);
-                minhaLista.setAdapter(adapterSolicitacao);
-                adapterSolicitacao.notifyDataSetChanged();
+                    AdapterClienteSolicitacao adapterSolicitacao = new AdapterClienteSolicitacao(getApplicationContext(), listSolicitacao);
+                    minhaLista.setAdapter(adapterSolicitacao);
+                    adapterSolicitacao.notifyDataSetChanged();
+                } else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(TMinhasSolicitacoes.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(TMinhasSolicitacoes.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(TMinhasSolicitacoes.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<List<Solicitacao>> call, Throwable t) {
-                minhaLista = findViewById(R.id.lvSolicitacao);
+                Toast.makeText(TMinhasSolicitacoes.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
-
     }
-
-
 }

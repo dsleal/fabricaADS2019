@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class TOrdemServico extends AppCompatActivity {
         atualizar();
     }
 
-    protected  void onStart(){
+    protected void onStart() {
         super.onStart();
         Retrofit retrofit = APIClient.getClient();
         OrdemServicoResource OrdemServicoResource = retrofit.create(OrdemServicoResource.class);
@@ -43,23 +44,39 @@ public class TOrdemServico extends AppCompatActivity {
         get.enqueue(new Callback<List<OrdemServico>>() {
             @Override
             public void onResponse(Call<List<OrdemServico>> call, Response<List<OrdemServico>> response) {
-                minhaLista = findViewById(R.id.lvOrdemServico);
-                listOrdemServico = response.body();
-                AdapterOrdemServico adapterOrdemServico = new AdapterOrdemServico(getApplicationContext(), listOrdemServico);
-                minhaLista.setAdapter(adapterOrdemServico);
-                minhaLista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                        Intent intent = new Intent(TOrdemServico.this, EditOrdemServico.class);
-                        intent.putExtra("ID",listOrdemServico.get(arg2).getId());
-                        startActivity(intent);
-                        return true;
+                if (response.isSuccessful()) {
+                    minhaLista = findViewById(R.id.lvOrdemServico);
+                    listOrdemServico = response.body();
+                    AdapterOrdemServico adapterOrdemServico = new AdapterOrdemServico(getApplicationContext(), listOrdemServico);
+                    minhaLista.setAdapter(adapterOrdemServico);
+                    minhaLista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                        @Override
+                        public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                            Intent intent = new Intent(TOrdemServico.this, EditOrdemServico.class);
+                            intent.putExtra("ID", listOrdemServico.get(arg2).getId());
+                            startActivity(intent);
+                            return true;
+                        }
+                    });
+                } else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(TOrdemServico.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(TOrdemServico.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(TOrdemServico.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
                     }
-                });
+                }
             }
-
             @Override
-            public void onFailure(Call<List<OrdemServico>> call, Throwable t) {}
+            public void onFailure(Call<List<OrdemServico>> call, Throwable t) {
+                Toast.makeText(TOrdemServico.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
+            }
         });
     }
 
@@ -70,19 +87,32 @@ public class TOrdemServico extends AppCompatActivity {
         get.enqueue(new Callback<List<OrdemServico>>() {
             @Override
             public void onResponse(Call<List<OrdemServico>> call, Response<List<OrdemServico>> response) {
-                minhaLista = findViewById(R.id.lvOrdemServico);
-                listOrdemServico = response.body();
+                if (response.isSuccessful()) {
+                    minhaLista = findViewById(R.id.lvOrdemServico);
+                    listOrdemServico = response.body();
 
-                AdapterOrdemServico adapterOrdemServico = new AdapterOrdemServico(getApplicationContext(), listOrdemServico);
-                minhaLista.setAdapter(adapterOrdemServico);
-                adapterOrdemServico.notifyDataSetChanged();
+                    AdapterOrdemServico adapterOrdemServico = new AdapterOrdemServico(getApplicationContext(), listOrdemServico);
+                    minhaLista.setAdapter(adapterOrdemServico);
+                    adapterOrdemServico.notifyDataSetChanged();
+                } else {
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(TOrdemServico.this, "404 - not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(TOrdemServico.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(TOrdemServico.this, "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             }
-
             @Override
             public void onFailure(Call<List<OrdemServico>> call, Throwable t) {
-                Log.e("error", "onFailure: " + t.getMessage() );
+                Toast.makeText(TOrdemServico.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
+                Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
-
     }
 }
