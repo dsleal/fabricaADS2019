@@ -72,12 +72,18 @@ public class TOrdemServico extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<List<OrdemServico>> call, Throwable t) {
                 Toast.makeText(TOrdemServico.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
                 Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(TOrdemServico.this, Administrador.class));
     }
 
     private void atualizar() {
@@ -108,6 +114,7 @@ public class TOrdemServico extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<List<OrdemServico>> call, Throwable t) {
                 Toast.makeText(TOrdemServico.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();

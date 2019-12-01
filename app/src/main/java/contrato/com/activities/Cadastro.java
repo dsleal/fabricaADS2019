@@ -21,9 +21,15 @@ public class Cadastro extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
     }
 
+
     public void cadastroCliente(View view) {
         Intent intent = new Intent(Cadastro.this, CadastroCliente.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Cadastro.this, MainActivity.class));
     }
 
 }

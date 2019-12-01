@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 
 import contrato.com.R;
+import contrato.com.activities.Login;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.OrdemServico;
 import contrato.com.model.StatusServico;
@@ -88,6 +89,12 @@ public class EditOrdemServico extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(EditOrdemServico.this, TOrdemServico.class));
+    }
+
 
     public void habilitaCancelamento(OrdemServico ordemServico) {
         btnCancelar = findViewById(R.id.btnOSCancelar);

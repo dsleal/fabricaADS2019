@@ -82,6 +82,10 @@ public class TOrdemPagamento extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(TOrdemPagamento.this, Administrador.class));
+    }
 
     private void atualizar() {
         Retrofit retrofit = APIClient.getClient();

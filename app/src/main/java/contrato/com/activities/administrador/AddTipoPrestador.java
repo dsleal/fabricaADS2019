@@ -34,6 +34,11 @@ public class AddTipoPrestador extends AppCompatActivity {
         descricao.setText(" ");
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(AddTipoPrestador.this, TTipoPrestador.class));
+    }
+
     public void adicionar(View view) {
         TipoPrestador tp = getDadosTela();
         Retrofit retrofit = APIClient.getClient();

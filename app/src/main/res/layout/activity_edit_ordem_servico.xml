@@ -1,22 +1,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_width="fill_parent">
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <LinearLayout android:layout_width="fill_parent"
+    <LinearLayout
         android:id="@+id/AddTpcabecalho"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="@color/colorPrimary"
+        android:orientation="horizontal"
         android:padding="10dip">
 
-        <TextView android:textColor="#FFFFFF"
+        <TextView
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_width="fill_parent"
             android:gravity="center_horizontal"
-            android:text="@string/llDetOrdemServico" />
+            android:text="@string/llDetOrdemServico"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 
@@ -25,27 +27,27 @@
         android:id="@+id/llOS"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@id/AddTpcabecalho">
+        android:layout_below="@id/AddTpcabecalho"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txtOSCod"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtOSCod"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/txtView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txtOSData"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtOSData"
@@ -57,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txtOSStatus"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtOSStatus"
@@ -69,43 +71,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txtOSCliente"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtOSCliente"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/txtView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txtOSEndereco"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtOSEndereco"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/txtView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txtOSPrestador"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtOSPrestador"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/txtView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txtSDDescricao"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtOSDescricao"
@@ -115,10 +117,11 @@
     </LinearLayout>
 
 
-    <LinearLayout android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center_vertical"
-        android:layout_height="wrap_content"
         android:padding="10dip">
 
         <Button
@@ -126,8 +129,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="cancelar"
             android:enabled="false"
+            android:onClick="cancelar"
             android:text="@string/btnOSCancelar" />
 
     </LinearLayout>

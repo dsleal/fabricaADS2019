@@ -77,8 +77,7 @@ public class EditPSolicitacoes extends AppCompatActivity {
                     endereco.setText(solicitacao.getCliente().getEndereco().toString());
 
                     habilitaAcoes();
-                }
-                else {
+                } else {
                     switch (response.code()) {
                         case 404:
                             Toast.makeText(EditPSolicitacoes.this, "404 - not found", Toast.LENGTH_SHORT).show();
@@ -99,6 +98,11 @@ public class EditPSolicitacoes extends AppCompatActivity {
                 Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(EditPSolicitacoes.this, TSolicitacoesAbertas.class));
     }
 
     public void habilitaAcoes() {
@@ -130,8 +134,7 @@ public class EditPSolicitacoes extends AppCompatActivity {
                         Solicitacao sol = response.body();
                         Toast.makeText(getBaseContext(), "Proposta para solicitação " + sol.getId() + " realizada! \nApós aprovação será criada a ordem serviço!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(EditPSolicitacoes.this, TSolicitacoesAbertas.class));
-                    }
-                    else {
+                    } else {
                         switch (response.code()) {
                             case 404:
                                 Toast.makeText(EditPSolicitacoes.this, "404 - not found", Toast.LENGTH_SHORT).show();
@@ -145,6 +148,7 @@ public class EditPSolicitacoes extends AppCompatActivity {
                         }
                     }
                 }
+
                 @Override
                 public void onFailure(Call<Solicitacao> call, Throwable t) {
                     Toast.makeText(EditPSolicitacoes.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();

@@ -37,7 +37,7 @@ public class AdapterClienteSolicitacao extends BaseAdapter {
         return this.colecao.get(i);
     }
 
-    private Solicitacao parsetItem(int i){
+    private Solicitacao parsetItem(int i) {
         return this.colecao.get(i);
     }
 
@@ -73,7 +73,7 @@ public class AdapterClienteSolicitacao extends BaseAdapter {
 
         data.setText(dataFormatada.format(solicitacao.getData()));
         descricao.setText(solicitacao.getDescricao());
-        id.setText(solicitacao.getId()+" ");
+        id.setText(solicitacao.getId() + " ");
 
         return view;
     }

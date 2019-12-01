@@ -39,7 +39,7 @@ public class AdapterTipoPrestador extends BaseAdapter {
         return this.colecao.get(i);
     }
 
-    private TipoPrestador parsetItem(int i){
+    private TipoPrestador parsetItem(int i) {
         return this.colecao.get(i);
     }
 
@@ -70,13 +70,12 @@ public class AdapterTipoPrestador extends BaseAdapter {
         id = view.findViewById(R.id.txtTpId);
 
 
-        descricao.setText(tipoPrestador.getDescricao()!=null ? tipoPrestador.getDescricao() : "Sem registro");
+        descricao.setText(tipoPrestador.getDescricao() != null ? tipoPrestador.getDescricao() : "Sem registro");
         ativo.setText(tipoPrestador.isAtivo() == true ? "ativo" : "desabilitado");
-        id.setText(tipoPrestador.getId()+" ");
+        id.setText(tipoPrestador.getId() + " ");
 
         return view;
     }
-
 
 
 }

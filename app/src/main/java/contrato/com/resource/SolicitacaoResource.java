@@ -20,10 +20,10 @@ public interface SolicitacaoResource {
     Call<Solicitacao> getPorId(@Path("id") Integer id);
 
     @GET("solicitacoes")
-    Call<List<Solicitacao>>  getPorStatus();
+    Call<List<Solicitacao>> getPorStatus();
 
     @GET("solicitacoes")
-    Call<List<Solicitacao>>  getPorCliente();
+    Call<List<Solicitacao>> getPorCliente();
 
     @POST("solicitacoes")
     Call<Solicitacao> post(@Body Solicitacao solicitacao);

@@ -38,7 +38,7 @@ public class AdapterOrdemServico extends BaseAdapter {
         return this.colecao.get(i);
     }
 
-    private OrdemServico parsetItem(int i){
+    private OrdemServico parsetItem(int i) {
         return this.colecao.get(i);
     }
 
@@ -75,7 +75,7 @@ public class AdapterOrdemServico extends BaseAdapter {
         data.setText(dataFormatada.format(OrdemServico.getData()));
         prestador.setText(OrdemServico.getPrestador().getNome());
         cliente.setText(OrdemServico.getSolicitacao().getCliente().getNome());
-        id.setText(OrdemServico.getId()+" ");
+        id.setText(OrdemServico.getId() + " ");
 
         return view;
     }

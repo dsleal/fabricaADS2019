@@ -1,22 +1,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_width="fill_parent">
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <LinearLayout android:layout_width="fill_parent"
+    <LinearLayout
         android:id="@+id/AddTpcabecalho"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="@color/colorPrimary"
+        android:orientation="horizontal"
         android:padding="10dip">
 
-        <TextView android:textColor="#FFFFFF"
+        <TextView
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_width="fill_parent"
             android:gravity="center_horizontal"
-            android:text="@string/llDetSolicitacao" />
+            android:text="@string/llDetSolicitacao"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 
@@ -25,27 +27,27 @@
         android:id="@+id/llES"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@id/AddTpcabecalho">
+        android:layout_below="@id/AddTpcabecalho"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txtSDCod"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtSDCod"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/txtView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txtSDData"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtSDData"
@@ -57,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txtSDStatus"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtSDStatus"
@@ -69,31 +71,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txtSDCliente"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtSDCliente"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/txtView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txtSDEndereco"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtSDEndereco"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/txtView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txtSDDescricao"
-            android:textStyle="bold|italic"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtSDDescricao"
@@ -103,10 +105,11 @@
     </LinearLayout>
 
 
-    <LinearLayout android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center_vertical"
-        android:layout_height="wrap_content"
         android:padding="10dip">
 
         <Button
@@ -114,8 +117,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="cancelar"
             android:enabled="false"
+            android:onClick="cancelar"
             android:text="@string/btnSCancelar" />
 
     </LinearLayout>

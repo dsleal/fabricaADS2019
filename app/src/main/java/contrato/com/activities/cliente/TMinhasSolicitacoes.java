@@ -104,6 +104,10 @@ public class TMinhasSolicitacoes extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(TMinhasSolicitacoes.this, PainelCliente.class));
+    }
 
     private void atualizar() {
 

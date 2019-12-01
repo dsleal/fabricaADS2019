@@ -85,6 +85,11 @@ public class TSolicitacao extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(TSolicitacao.this, Administrador.class));
+    }
+
     private void atualizar() {
         Retrofit retrofit = APIClient.getClient();
         SolicitacaoResource solicitacaoResource = retrofit.create(SolicitacaoResource.class);
@@ -99,8 +104,7 @@ public class TSolicitacao extends AppCompatActivity {
                     AdapterSolicitacao adapterSolicitacao = new AdapterSolicitacao(getApplicationContext(), listSolicitacao);
                     minhaLista.setAdapter(adapterSolicitacao);
                     adapterSolicitacao.notifyDataSetChanged();
-                }
-                else {
+                } else {
                     switch (response.code()) {
                         case 404:
                             Toast.makeText(TSolicitacao.this, "404 - not found", Toast.LENGTH_SHORT).show();
@@ -114,6 +118,7 @@ public class TSolicitacao extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<List<Solicitacao>> call, Throwable t) {
                 Log.e("error", "onFailure: " + t.getMessage());

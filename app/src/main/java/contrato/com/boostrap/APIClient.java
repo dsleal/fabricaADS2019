@@ -12,12 +12,9 @@ public class APIClient {
 
     private static Retrofit retrofit = null;
 
-    //public static final String ENDPOINT = "https://jsonplaceholder.typicode.com/";
-    //public static final String ENDPOINT = "http://10.144.30.211:8080/api/";
     public static final String ENDPOINT = "http://192.168.137.1:8080/api/";
 
-    public static Retrofit getClient(){
-
+    public static Retrofit getClient() {
 
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

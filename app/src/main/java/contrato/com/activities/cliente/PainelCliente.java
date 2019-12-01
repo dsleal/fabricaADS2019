@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import contrato.com.R;
+import contrato.com.activities.Login;
+import contrato.com.activities.MainActivity;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.Cliente;
 import contrato.com.resource.ClienteResource;
@@ -43,8 +45,7 @@ public class PainelCliente extends AppCompatActivity {
             public void onResponse(Call<Cliente> call, Response<Cliente> response) {
                 if (response.isSuccessful()) {
                     Cliente cliente = response.body();
-                }
-                else {
+                } else {
                     switch (response.code()) {
                         case 404:
                             Toast.makeText(PainelCliente.this, "404 - not found", Toast.LENGTH_SHORT).show();
@@ -66,6 +67,11 @@ public class PainelCliente extends AppCompatActivity {
             }
         });
         return cli;
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(PainelCliente.this, Login.class));
     }
 
     public void minhasSolicitacoes(View view) {

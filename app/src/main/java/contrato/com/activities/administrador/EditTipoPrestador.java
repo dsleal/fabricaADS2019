@@ -39,7 +39,7 @@ public class EditTipoPrestador extends AppCompatActivity {
         rbEditDesabilitado = findViewById(R.id.rbEditDesabilitado);
         rbEditAtivo = findViewById(R.id.rbEditAtivo);
         Intent intent = getIntent();
-        id = intent.getIntExtra("ID",0);
+        id = intent.getIntExtra("ID", 0);
 
         Retrofit retrofit = APIClient.getClient();
         TipoPrestadorResource tipoPrestador = retrofit.create(TipoPrestadorResource.class);
@@ -51,15 +51,14 @@ public class EditTipoPrestador extends AppCompatActivity {
                     TipoPrestador tp = response.body();
                     codigo.setText(Integer.toString(tp.getId()));
                     descricao.setText(tp.getDescricao());
-                    if(tp.isAtivo()){
+                    if (tp.isAtivo()) {
                         rbEditDesabilitado.setChecked(false);
                         rbEditAtivo.setChecked(true);
-                    }else{
+                    } else {
                         rbEditDesabilitado.setChecked(true);
                         rbEditAtivo.setChecked(false);
                     }
-                }
-                else {
+                } else {
                     switch (response.code()) {
                         case 404:
                             Toast.makeText(EditTipoPrestador.this, "404 - not found", Toast.LENGTH_SHORT).show();
@@ -73,6 +72,7 @@ public class EditTipoPrestador extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<TipoPrestador> call, Throwable t) {
                 Toast.makeText(EditTipoPrestador.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
@@ -81,7 +81,12 @@ public class EditTipoPrestador extends AppCompatActivity {
         });
     }
 
-    public void alterar(View view){
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(EditTipoPrestador.this, TTipoPrestador.class));
+    }
+
+    public void alterar(View view) {
         Retrofit retrofit = APIClient.getClient();
         TipoPrestadorResource tipoPrestador = retrofit.create(TipoPrestadorResource.class);
         TipoPrestador tp = new TipoPrestador();
@@ -94,10 +99,9 @@ public class EditTipoPrestador extends AppCompatActivity {
         RadioButton selectedRadioButton = (RadioButton) findViewById(selectedRadioButtonID);
         String selectedRadioButtonText = selectedRadioButton.getText().toString();
 
-        if(selectedRadioButtonText.equals("Ativo")){
+        if (selectedRadioButtonText.equals("Ativo")) {
             ativo = true;
-        }
-        else if (selectedRadioButtonText.equals("Desabilitado")){
+        } else if (selectedRadioButtonText.equals("Desabilitado")) {
             ativo = false;
         }
         tp.setAtivo(ativo);
@@ -109,8 +113,7 @@ public class EditTipoPrestador extends AppCompatActivity {
                     TipoPrestador tPrest = response.body();
                     Toast.makeText(getBaseContext(), "Tipo de Prestador alterado com sucesso!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(EditTipoPrestador.this, TTipoPrestador.class));
-                }
-                else {
+                } else {
                     switch (response.code()) {
                         case 404:
                             Toast.makeText(EditTipoPrestador.this, "404 - not found", Toast.LENGTH_SHORT).show();
@@ -124,6 +127,7 @@ public class EditTipoPrestador extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<TipoPrestador> call, Throwable t) {
                 Toast.makeText(EditTipoPrestador.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
@@ -131,7 +135,8 @@ public class EditTipoPrestador extends AppCompatActivity {
             }
         });
     }
-    public void remover(View view){
+
+    public void remover(View view) {
         Retrofit retrofit = APIClient.getClient();
         TipoPrestadorResource tipoPrestador = retrofit.create(TipoPrestadorResource.class);
         Call<Void> delete = tipoPrestador.delete(id);
@@ -141,8 +146,7 @@ public class EditTipoPrestador extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(getBaseContext(), "Tipo de Prestador removido com sucesso!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(EditTipoPrestador.this, TTipoPrestador.class));
-                }
-                else {
+                } else {
                     switch (response.code()) {
                         case 404:
                             Toast.makeText(EditTipoPrestador.this, "404 - not found", Toast.LENGTH_SHORT).show();
@@ -156,6 +160,7 @@ public class EditTipoPrestador extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(EditTipoPrestador.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();

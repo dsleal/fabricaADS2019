@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import contrato.com.R;
+import contrato.com.activities.Login;
 
 public class PainelPrestador extends AppCompatActivity {
 
@@ -16,9 +17,14 @@ public class PainelPrestador extends AppCompatActivity {
         setContentView(R.layout.activity_painel_prestador);
     }
 
-    public void minhasSolicitacoes(View view){
+    public void minhasSolicitacoes(View view) {
         Intent intent = new Intent(PainelPrestador.this, TSolicitacoesAbertas.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(PainelPrestador.this, Login.class));
     }
 
 

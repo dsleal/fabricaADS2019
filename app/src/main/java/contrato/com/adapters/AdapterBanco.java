@@ -35,7 +35,7 @@ public class AdapterBanco extends BaseAdapter {
         return this.colecao.get(i);
     }
 
-    private Banco parsetItem(int i){
+    private Banco parsetItem(int i) {
         return this.colecao.get(i);
     }
 
@@ -58,9 +58,8 @@ public class AdapterBanco extends BaseAdapter {
         Banco banco1 = parsetItem(i);
 
         TextView banco;
-       // TextView ativo;
+        // TextView ativo;
         TextView cod;
-
 
 
         banco = view.findViewById(R.id.txtTpDesc);
@@ -68,9 +67,9 @@ public class AdapterBanco extends BaseAdapter {
         cod = view.findViewById(R.id.txtTpId);
 
 
-        banco.setText(banco1.getBanco()!=null ? banco1.getBanco() : "Sem registro");
+        banco.setText(banco1.getBanco() != null ? banco1.getBanco() : "Sem registro");
         //ativo.setText(tipoPrestador.isAtivo() == true ? "ativo" : "desabilitado");
-        cod.setText(banco1.getCod()+" ");
+        cod.setText(banco1.getCod() + " ");
 
         return view;
     }

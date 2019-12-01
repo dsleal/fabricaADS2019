@@ -18,7 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import contrato.com.R;
+import contrato.com.activities.Cadastro;
 import contrato.com.activities.Login;
+import contrato.com.activities.MainActivity;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.Endereco;
 import contrato.com.model.Prestador;
@@ -36,6 +38,11 @@ public class CadastroPrestador extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_prestador);
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(CadastroPrestador.this, MainActivity.class));
     }
 
 }

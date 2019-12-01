@@ -48,6 +48,11 @@ public class Login extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Login.this, MainActivity.class));
+    }
+
 
     public void acessar(View view) {
 

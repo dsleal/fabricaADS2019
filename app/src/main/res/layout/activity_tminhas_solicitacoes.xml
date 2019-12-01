@@ -31,9 +31,9 @@
 
         <ListView
             android:id="@+id/lvCSolicitacao"
-            android:layout_below="@id/appbarlayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_below="@id/appbarlayout" />
     </LinearLayout>
 
 
@@ -44,7 +44,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_input_add" />
-
 
 
 </android.support.design.widget.CoordinatorLayout>

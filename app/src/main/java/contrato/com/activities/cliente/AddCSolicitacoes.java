@@ -76,6 +76,11 @@ public class AddCSolicitacoes extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(AddCSolicitacoes.this, TMinhasSolicitacoes.class));
+    }
+
     public void adicionar(View view) {
         Solicitacao sol = getDadosTela();
         Retrofit retrofit = APIClient.getClient();

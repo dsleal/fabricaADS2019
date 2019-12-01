@@ -100,6 +100,11 @@ public class EditSolicitacao extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(EditSolicitacao.this, TSolicitacao.class));
+    }
+
     public void cancelar(View view) {
         StatusSolicitacao statusSolitacao = new StatusSolicitacao();
         statusSolitacao.setId(99995);

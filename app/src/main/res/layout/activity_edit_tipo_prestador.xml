@@ -1,22 +1,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_width="fill_parent">
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <LinearLayout android:layout_width="fill_parent"
+    <LinearLayout
         android:id="@+id/AddTpcabecalho"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="@color/colorPrimary"
+        android:orientation="horizontal"
         android:padding="10dip">
 
-        <TextView android:textColor="#FFFFFF"
+        <TextView
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_width="fill_parent"
             android:gravity="center_horizontal"
-            android:text="@string/llEditTP" />
+            android:text="@string/llEditTP"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 
@@ -24,15 +26,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@id/AddTpcabecalho">
+        android:layout_below="@id/AddTpcabecalho"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/txtEditCod"
-            android:enabled="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:enabled="false"
             android:inputType="textPersonName" />
 
         <EditText
@@ -47,9 +49,9 @@
             android:id="@+id/rbEditGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
             android:gravity="center"
-            android:layout_gravity="center_vertical">
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/rbEditAtivo"
@@ -67,11 +69,13 @@
     </LinearLayout>
 
 
-    <LinearLayout android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center_vertical"
-        android:layout_height="wrap_content"
         android:padding="10dip">
+
         <Button
             android:id="@+id/btnAddTPAdicionar"
             android:layout_width="0dp"

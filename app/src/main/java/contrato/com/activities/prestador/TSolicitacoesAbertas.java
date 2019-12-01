@@ -40,6 +40,10 @@ public class TSolicitacoesAbertas extends AppCompatActivity {
         atualizar();
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(TSolicitacoesAbertas.this, PainelPrestador.class));
+    }
 
     protected void onStart() {
         super.onStart();
@@ -78,6 +82,7 @@ public class TSolicitacoesAbertas extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<List<Solicitacao>> call, Throwable t) {
                 Toast.makeText(TSolicitacoesAbertas.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
@@ -101,8 +106,7 @@ public class TSolicitacoesAbertas extends AppCompatActivity {
                     AdapterSolicitacao adapterSolicitacao = new AdapterSolicitacao(getApplicationContext(), listSolicitacao);
                     minhaLista.setAdapter(adapterSolicitacao);
                     adapterSolicitacao.notifyDataSetChanged();
-                }
-                else {
+                } else {
                     switch (response.code()) {
                         case 404:
                             Toast.makeText(TSolicitacoesAbertas.this, "404 - not found", Toast.LENGTH_SHORT).show();

@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import contrato.com.R;
+import contrato.com.activities.Login;
 import contrato.com.activities.cliente.EditCSolicitacoes;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.OrdemPagamento;
@@ -48,7 +49,7 @@ public class EditOrdemPagamento extends AppCompatActivity {
         data = findViewById(R.id.txtOPData);
         dataPagamento = findViewById(R.id.txtOPDataPagamento);
         valor = findViewById(R.id.txtOPValor);
-        
+
         Intent intent = getIntent();
         id = intent.getLongExtra("ID", 0);
 
@@ -67,13 +68,12 @@ public class EditOrdemPagamento extends AppCompatActivity {
 
                     SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
                     data.setText(dataFormatada.format(ordemPagamento.getData()));
-                    if(ordemPagamento.getDataPagamento()!= null){
+                    if (ordemPagamento.getDataPagamento() != null) {
                         dataPagamento.setText(dataFormatada.format(ordemPagamento.getDataPagamento()));
                     }
                     habilitaPagamento(ordemPagamento);
 
-                }
-                else {
+                } else {
                     switch (response.code()) {
                         case 404:
                             Toast.makeText(EditOrdemPagamento.this, "404 - not found", Toast.LENGTH_SHORT).show();
@@ -96,15 +96,20 @@ public class EditOrdemPagamento extends AppCompatActivity {
         });
     }
 
-    public void habilitaPagamento(OrdemPagamento ordemPagamento){
+    public void habilitaPagamento(OrdemPagamento ordemPagamento) {
         btnOPPagar = findViewById(R.id.btnOPPagar);
-        if(ordemPagamento.getDataPagamento()== null){
+        if (ordemPagamento.getDataPagamento() == null) {
             btnOPPagar.setEnabled(true);
         }
 
     }
 
-    public void pagar(View view){
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(EditOrdemPagamento.this, TOrdemPagamento.class));
+    }
+
+    public void pagar(View view) {
 
         ordemPagamento.setDataPagamento(new Date(System.currentTimeMillis()));
         Retrofit retrofit = APIClient.getClient();
@@ -115,10 +120,9 @@ public class EditOrdemPagamento extends AppCompatActivity {
             public void onResponse(Call<OrdemPagamento> call, Response<OrdemPagamento> response) {
                 if (response.isSuccessful()) {
                     OrdemPagamento os = response.body();
-                    Toast.makeText(getBaseContext(), "Pagamento da ordem " + os.getId() +" realizado!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Pagamento da ordem " + os.getId() + " realizado!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(EditOrdemPagamento.this, TOrdemPagamento.class));
-                }
-                else {
+                } else {
                     switch (response.code()) {
                         case 404:
                             Toast.makeText(EditOrdemPagamento.this, "404 - not found", Toast.LENGTH_SHORT).show();

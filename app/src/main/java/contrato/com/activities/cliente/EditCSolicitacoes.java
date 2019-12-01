@@ -90,12 +90,18 @@ public class EditCSolicitacoes extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<Solicitacao> call, Throwable t) {
                 Toast.makeText(EditCSolicitacoes.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
                 Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class));
     }
 
     public void habilitaAcoes() {
@@ -128,8 +134,7 @@ public class EditCSolicitacoes extends AppCompatActivity {
                     Solicitacao sol = response.body();
                     Toast.makeText(getBaseContext(), "Solicitação " + sol.getId() + " cancelada!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class));
-                }
-                else {
+                } else {
                     switch (response.code()) {
                         case 404:
                             Toast.makeText(EditCSolicitacoes.this, "404 - not found", Toast.LENGTH_SHORT).show();
@@ -143,6 +148,7 @@ public class EditCSolicitacoes extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<Solicitacao> call, Throwable t) {
                 Toast.makeText(EditCSolicitacoes.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
@@ -167,8 +173,7 @@ public class EditCSolicitacoes extends AppCompatActivity {
                     Solicitacao sol = response.body();
                     Toast.makeText(getBaseContext(), "Preço para solicitação " + sol.getId() + " aprovado! \n Será criada um ordem de serviço!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class));
-                }
-                else {
+                } else {
                     switch (response.code()) {
                         case 404:
                             Toast.makeText(EditCSolicitacoes.this, "404 - not found", Toast.LENGTH_SHORT).show();
@@ -182,6 +187,7 @@ public class EditCSolicitacoes extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<Solicitacao> call, Throwable t) {
                 Toast.makeText(EditCSolicitacoes.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();

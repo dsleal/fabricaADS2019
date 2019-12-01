@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.GridLayout;
 
 import contrato.com.R;
+import contrato.com.activities.Login;
 
 public class Administrador extends AppCompatActivity {
 
@@ -18,7 +19,12 @@ public class Administrador extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_administrador);
 
-       }
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Administrador.this, Login.class));
+    }
 
 
     public void tpPrestador(View view) {
@@ -40,7 +46,6 @@ public class Administrador extends AppCompatActivity {
         Intent intent = new Intent(Administrador.this, TOrdemPagamento.class);
         startActivity(intent);
     }
-
 
 
 }

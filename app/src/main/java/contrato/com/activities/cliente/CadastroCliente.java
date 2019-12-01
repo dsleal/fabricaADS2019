@@ -19,7 +19,9 @@ import java.sql.Date;
 import java.util.InputMismatchException;
 
 import contrato.com.R;
+import contrato.com.activities.Cadastro;
 import contrato.com.activities.Login;
+import contrato.com.activities.MainActivity;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.Cliente;
 import contrato.com.model.Endereco;
@@ -46,7 +48,6 @@ public class CadastroCliente extends AppCompatActivity {
     private RadioButton rbCNPJ;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,10 @@ public class CadastroCliente extends AppCompatActivity {
         inserirMascaras();
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(CadastroCliente.this, Cadastro.class));
+    }
 
     public void limparCli(View view) {
         setCampos();
@@ -120,7 +125,7 @@ public class CadastroCliente extends AppCompatActivity {
 
         /*
         endereco.setLogradouro(edtLogradouro.getText().toString());
-        endereco.setCep(edtCEP.getText().toString());
+        endereco.setCep(edtCEP.getText().toString().replace("[./-]",""));
         endereco.setCidade(edtCidade.getText().toString());
         endereco.setEstado(edtEstado.getText().toString());
         */
@@ -128,11 +133,11 @@ public class CadastroCliente extends AppCompatActivity {
 
         cli.setEndereco(endereco);
         cli.setNome(edtNome.getText().toString());
-        cli.setCpfCnpj(edtCpf_Cnpj.getText().toString());
+        cli.setCpfCnpj(edtCpf_Cnpj.getText().toString().replace("[./-]", ""));
         cli.setEmail(edtEmail.getText().toString());
         cli.setDtNascimento(new Date(System.currentTimeMillis()));
         cli.setIdentidade(edtIdentidade.getText().toString());
-        //cli.setTe(edtTelefone.getText().toString());
+        //cli.setTe(edtTelefone.getText().toString().replace("[./-]",""));
         cli.setDtCadastro(new Date(System.currentTimeMillis()));
         return cli;
     }
@@ -177,25 +182,28 @@ public class CadastroCliente extends AppCompatActivity {
         }
 
         //cpf valido
-        if (!isCPF(edtCpf_Cnpj.getText().toString())) {
-            Toast.makeText(CadastroCliente.this, "CPF Invalido!", Toast.LENGTH_LONG).show();
-            return false;
+        if (edtCpf_Cnpj.length() == 11) {
+            if (!isCPF(edtCpf_Cnpj.getText().toString())) {
+                Toast.makeText(CadastroCliente.this, "CPF Invalido!", Toast.LENGTH_LONG).show();
+                return false;
+            }
         }
         return true;
     }
 
 
-    private boolean isCPF(String CPF) {
-        if (CPF.equals("00000000000") ||
-                CPF.equals("11111111111") ||
-                CPF.equals("22222222222") ||
-                CPF.equals("44444444444") ||
-                CPF.equals("55555555555") ||
-                CPF.equals("66666666666") ||
-                CPF.equals("77777777777") ||
-                CPF.equals("88888888888") ||
-                CPF.equals("99999999999") ||
-                (CPF.length() != 11)) {
+    private boolean isCPF(String c) {
+        String cpf = c.replace("[./-]", "");
+        if (cpf.equals("00000000000") ||
+                cpf.equals("11111111111") ||
+                cpf.equals("22222222222") ||
+                cpf.equals("44444444444") ||
+                cpf.equals("55555555555") ||
+                cpf.equals("66666666666") ||
+                cpf.equals("77777777777") ||
+                cpf.equals("88888888888") ||
+                cpf.equals("99999999999") ||
+                (cpf.length() != 11)) {
             return (false);
         }
         char dig10, dig11;
@@ -204,7 +212,7 @@ public class CadastroCliente extends AppCompatActivity {
             sm = 0;
             peso = 10;
             for (i = 0; i < 9; i++) {
-                num = (int) (CPF.charAt(i) - 48);
+                num = (int) (cpf.charAt(i) - 48);
                 sm = sm + (num * peso);
                 peso = peso - 1;
             }
@@ -219,7 +227,7 @@ public class CadastroCliente extends AppCompatActivity {
             sm = 0;
             peso = 11;
             for (i = 0; i < 10; i++) {
-                num = (int) (CPF.charAt(i) - 48);
+                num = (int) (cpf.charAt(i) - 48);
                 sm = sm + (num * peso);
                 peso = peso - 1;
             }
@@ -231,7 +239,7 @@ public class CadastroCliente extends AppCompatActivity {
                 dig11 = (char) (r + 48);
             }
 
-            if ((dig10 == CPF.charAt(9)) && (dig11 == CPF.charAt(10))) {
+            if ((dig10 == cpf.charAt(9)) && (dig11 == cpf.charAt(10))) {
                 return true;
             } else {
                 return false;
@@ -243,7 +251,7 @@ public class CadastroCliente extends AppCompatActivity {
 
     }
 
-    private void inserirMascaras(){
+    private void inserirMascaras() {
         setCampos();
         /*
         //telefone

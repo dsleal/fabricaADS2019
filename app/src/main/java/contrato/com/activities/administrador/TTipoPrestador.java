@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import contrato.com.R;
+import contrato.com.activities.MainActivity;
 import contrato.com.adapters.AdapterTipoPrestador;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.TipoPrestador;
@@ -53,6 +54,11 @@ public class TTipoPrestador extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(TTipoPrestador.this, Administrador.class));
+    }
+
     protected void onStart() {
         super.onStart();
 
@@ -76,8 +82,7 @@ public class TTipoPrestador extends AppCompatActivity {
                             return true;
                         }
                     });
-                }
-                else {
+                } else {
                     switch (response.code()) {
                         case 404:
                             Toast.makeText(TTipoPrestador.this, "404 - not found", Toast.LENGTH_SHORT).show();
@@ -121,8 +126,7 @@ public class TTipoPrestador extends AppCompatActivity {
                     AdapterTipoPrestador adapterTipoPrestador = new AdapterTipoPrestador(getApplicationContext(), listTP);
                     minhaLista.setAdapter(adapterTipoPrestador);
                     adapterTipoPrestador.notifyDataSetChanged();
-                }
-                else {
+                } else {
                     switch (response.code()) {
                         case 404:
                             Toast.makeText(TTipoPrestador.this, "404 - not found", Toast.LENGTH_SHORT).show();
@@ -136,6 +140,7 @@ public class TTipoPrestador extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<List<TipoPrestador>> call, Throwable t) {
                 Toast.makeText(TTipoPrestador.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
