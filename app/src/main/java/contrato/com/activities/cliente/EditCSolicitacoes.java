@@ -70,7 +70,7 @@ public class EditCSolicitacoes extends AppCompatActivity {
                     descricao.setText(solicitacao.getDescricao());
                     data.setText(dataFormatada.format(solicitacao.getData()));
 
-                    if (solicitacao.getValor() != null & solicitacao.getValor() != 0) {
+                    if (solicitacao.getValor() != null) {
                         valorServico.setText(solicitacao.getValor().toString());
                     }
                     if (solicitacao.getTipoPrestador() != null) {

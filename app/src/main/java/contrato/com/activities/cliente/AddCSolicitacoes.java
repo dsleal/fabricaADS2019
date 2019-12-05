@@ -95,7 +95,7 @@ public class AddCSolicitacoes extends AppCompatActivity {
                     Solicitacao sol = response.body();
                     Toast.makeText(AddCSolicitacoes.this, "Solitação para um " + sol.getTipoPrestador().getDescricao() + " cadastrada!", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(AddCSolicitacoes.this, TMinhasSolicitacoes.class);
-                    intent.putExtra("ID", idCliente);
+                    intent.putExtra("id", idCliente);
                     startActivity(intent);
                 } else {
                     switch (response.code()) {
