@@ -1,10 +1,8 @@
 package contrato.com.activities.cliente;
 
 import android.content.Intent;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -41,12 +39,10 @@ public class CadastroCliente extends AppCompatActivity {
     private EditText edtCEP;
     private EditText edtCidade;
     private EditText edtEstado;
-    private EditText edtTelefone;
     private EditText edtSenha;
     private EditText edtConfirmarSenha;
     private RadioButton rbCPF;
     private RadioButton rbCNPJ;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +50,10 @@ public class CadastroCliente extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_cliente);
 
         inserirMascaras();
+
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -97,6 +96,10 @@ public class CadastroCliente extends AppCompatActivity {
                         case 404:
                             Toast.makeText(CadastroCliente.this, "404 - not found", Toast.LENGTH_SHORT).show();
                             break;
+                        case 409:
+                            Toast.makeText(CadastroCliente.this, "Email ou CPF já cadastrado!", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(CadastroCliente.this, Cadastro.class));
+                            break;
                         case 500:
                             Toast.makeText(CadastroCliente.this, "500 - internal server error", Toast.LENGTH_SHORT).show();
                             break;
@@ -123,21 +126,17 @@ public class CadastroCliente extends AppCompatActivity {
         Endereco endereco = new Endereco();
         Cliente cli = new Cliente();
 
-        /*
+
         endereco.setLogradouro(edtLogradouro.getText().toString());
         endereco.setCep(edtCEP.getText().toString().replace("[./-]",""));
         endereco.setCidade(edtCidade.getText().toString());
         endereco.setEstado(edtEstado.getText().toString());
-        */
-        endereco.setId(99991);
 
         cli.setEndereco(endereco);
         cli.setNome(edtNome.getText().toString());
         cli.setCpfCnpj(edtCpf_Cnpj.getText().toString().replace("[./-]", ""));
         cli.setEmail(edtEmail.getText().toString());
-        cli.setDtNascimento(new Date(System.currentTimeMillis()));
         cli.setIdentidade(edtIdentidade.getText().toString());
-        //cli.setTe(edtTelefone.getText().toString().replace("[./-]",""));
         cli.setDtCadastro(new Date(System.currentTimeMillis()));
         return cli;
     }
@@ -151,7 +150,6 @@ public class CadastroCliente extends AppCompatActivity {
         edtCEP = findViewById(R.id.edtCEP);
         edtCidade = findViewById(R.id.edtCidade);
         edtEstado = findViewById(R.id.edtEstado);
-        edtTelefone = findViewById(R.id.edtTelefone);
         edtSenha = findViewById(R.id.edtSenha);
         edtConfirmarSenha = findViewById(R.id.edtConfirmarSenha);
         rbCNPJ = findViewById(R.id.rbCNPJ);
@@ -164,7 +162,7 @@ public class CadastroCliente extends AppCompatActivity {
         //campos não preenchidos
         if (edtNome.length() == 0 || edtCpf_Cnpj.length() == 0 || edtEmail.length() == 0 || edtIdentidade.length() == 0 || edtLogradouro.length() == 0 ||
                 edtCEP.length() == 0 || edtCidade.length() == 0 || edtEstado.length() == 0 ||
-                edtTelefone.length() == 0 || edtSenha.length() == 0 || edtConfirmarSenha.length() == 0) {
+                edtSenha.length() == 0 || edtConfirmarSenha.length() == 0) {
             Toast.makeText(CadastroCliente.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -176,7 +174,7 @@ public class CadastroCliente extends AppCompatActivity {
         }
 
         //tamanho cpf / cnpj
-        if (edtCpf_Cnpj.length() != 11 & edtCpf_Cnpj.length() != 14) {
+        if (edtCpf_Cnpj.length() != 14 & edtCpf_Cnpj.length() != 18) {
             Toast.makeText(CadastroCliente.this, "Digite um cpf ou cnpj!", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -253,12 +251,7 @@ public class CadastroCliente extends AppCompatActivity {
 
     private void inserirMascaras() {
         setCampos();
-        /*
-        //telefone
-        SimpleMaskFormatter tel = new SimpleMaskFormatter("(NN)NNNNN-NNNN");
-        MaskTextWatcher mtw = new MaskTextWatcher(edtTelefone, tel);
-        edtTelefone.addTextChangedListener(mtw);
-         */
+
         //CEP
         SimpleMaskFormatter cep = new SimpleMaskFormatter("NNNNN-NNN");
         MaskTextWatcher mtw = new MaskTextWatcher(edtCEP, cep);

@@ -19,11 +19,11 @@ public interface SolicitacaoResource {
     @GET("solicitacoes/{id}")
     Call<Solicitacao> getPorId(@Path("id") Integer id);
 
-    @GET("solicitacoes")
-    Call<List<Solicitacao>> getPorStatus();
+    @GET("solicitacoes/cliente/{id}")
+    Call<List<Solicitacao>> getPorCliente(@Path("id") Integer id);
 
-    @GET("solicitacoes")
-    Call<List<Solicitacao>> getPorCliente();
+    @GET("solicitacoes/tipoPrestadorId/{tipoPrestadorid}/statusSolicitacaoId/{statusSolicitacaoId}")
+    Call<List<Solicitacao>> getPorStatusTP(@Path("tipoPrestadorid") Integer idTPPrestador, @Path("statusSolicitacaoId") Integer idStatus);
 
     @POST("solicitacoes")
     Call<Solicitacao> post(@Body Solicitacao solicitacao);

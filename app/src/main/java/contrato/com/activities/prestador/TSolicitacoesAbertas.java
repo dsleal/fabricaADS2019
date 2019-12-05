@@ -7,15 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import contrato.com.R;
-import contrato.com.activities.cliente.EditCSolicitacoes;
-import contrato.com.activities.cliente.TMinhasSolicitacoes;
 import contrato.com.adapters.AdapterClienteSolicitacao;
 import contrato.com.adapters.AdapterSolicitacao;
 import contrato.com.boostrap.APIClient;
@@ -27,7 +24,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class TSolicitacoesAbertas extends AppCompatActivity {
-
+    Integer idTpPrestador;
+    Integer idStatusSol;
     public List<Solicitacao> lista = new ArrayList<>();
     public ListView minhaLista;
     public List<Solicitacao> listSolicitacao;
@@ -37,20 +35,31 @@ public class TSolicitacoesAbertas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tsolicitacoes_abertas);
 
+        Intent intent = getIntent();
+        idTpPrestador = intent.getIntExtra("idTpPrestador", 0);
+        idStatusSol = intent.getIntExtra("idStatusSol", 0);
+
         atualizar();
     }
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(TSolicitacoesAbertas.this, PainelPrestador.class));
+        Intent intent = new Intent(TSolicitacoesAbertas.this, PainelPrestador.class);
+        intent.putExtra("idTpPrestador", idTpPrestador);
+        intent.putExtra("idStatusSol", idStatusSol);
+        startActivity(intent);
     }
 
     protected void onStart() {
         super.onStart();
 
+        Intent intent = getIntent();
+        idTpPrestador = intent.getIntExtra("idTpPrestador", 0);
+        idStatusSol = intent.getIntExtra("idStatusSol", 0);
+
         Retrofit retrofit = APIClient.getClient();
         SolicitacaoResource solicitacaoResource = retrofit.create(SolicitacaoResource.class);
-        Call<List<Solicitacao>> get = solicitacaoResource.getPorStatus();
+        Call<List<Solicitacao>> get = solicitacaoResource.getPorStatusTP(idTpPrestador, idStatusSol);
         get.enqueue(new Callback<List<Solicitacao>>() {
             @Override
             public void onResponse(Call<List<Solicitacao>> call, Response<List<Solicitacao>> response) {
@@ -64,6 +73,8 @@ public class TSolicitacoesAbertas extends AppCompatActivity {
                         public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                             Intent intent = new Intent(TSolicitacoesAbertas.this, EditPSolicitacoes.class);
                             intent.putExtra("ID", listSolicitacao.get(arg2).getId());
+                            intent.putExtra("idTpPrestador", idTpPrestador);
+                            intent.putExtra("idStatusSol", idStatusSol);
                             startActivity(intent);
                             return true;
                         }
@@ -95,7 +106,7 @@ public class TSolicitacoesAbertas extends AppCompatActivity {
     private void atualizar() {
         Retrofit retrofit = APIClient.getClient();
         SolicitacaoResource solicitacaoResource = retrofit.create(SolicitacaoResource.class);
-        Call<List<Solicitacao>> get = solicitacaoResource.getPorStatus();
+        Call<List<Solicitacao>> get = solicitacaoResource.getPorStatusTP(idTpPrestador, idStatusSol);
         get.enqueue(new Callback<List<Solicitacao>>() {
             @Override
             public void onResponse(Call<List<Solicitacao>> call, Response<List<Solicitacao>> response) {

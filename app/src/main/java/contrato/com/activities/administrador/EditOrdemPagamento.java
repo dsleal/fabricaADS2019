@@ -13,12 +13,8 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import contrato.com.R;
-import contrato.com.activities.Login;
-import contrato.com.activities.cliente.EditCSolicitacoes;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.OrdemPagamento;
-import contrato.com.model.OrdemPagamento;
-import contrato.com.model.StatusServico;
 import contrato.com.resource.OrdemPagamentoResource;
 import retrofit2.Call;
 import retrofit2.Callback;

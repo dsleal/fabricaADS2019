@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import contrato.com.R;
-import contrato.com.activities.MainActivity;
 import contrato.com.adapters.AdapterTipoPrestador;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.TipoPrestador;
@@ -64,7 +62,7 @@ public class TTipoPrestador extends AppCompatActivity {
 
         Retrofit retrofit = APIClient.getClient();
         TipoPrestadorResource tipoPrestador = retrofit.create(TipoPrestadorResource.class);
-        Call<List<TipoPrestador>> get = tipoPrestador.get();
+        Call<List<TipoPrestador>> get = tipoPrestador.getTodos();
         get.enqueue(new Callback<List<TipoPrestador>>() {
             @Override
             public void onResponse(Call<List<TipoPrestador>> call, Response<List<TipoPrestador>> response) {
@@ -96,15 +94,12 @@ public class TTipoPrestador extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<List<TipoPrestador>> call, Throwable t) {
                 Toast.makeText(TTipoPrestador.this, "Favor verificar sua conexão.", Toast.LENGTH_SHORT).show();
                 Log.e(this.getClass().getName(), "onFailure: " + t.getMessage());
             }
         });
-
-
     }
 
     protected void onResume() {
@@ -115,7 +110,7 @@ public class TTipoPrestador extends AppCompatActivity {
     private void atualizar() {
         Retrofit retrofit = APIClient.getClient();
         TipoPrestadorResource tipoPrestador = retrofit.create(TipoPrestadorResource.class);
-        Call<List<TipoPrestador>> get = tipoPrestador.get();
+        Call<List<TipoPrestador>> get = tipoPrestador.getTodos();
         get.enqueue(new Callback<List<TipoPrestador>>() {
             @Override
             public void onResponse(Call<List<TipoPrestador>> call, Response<List<TipoPrestador>> response) {

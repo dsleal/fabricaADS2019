@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -15,12 +14,9 @@ import java.util.List;
 
 import contrato.com.R;
 import contrato.com.adapters.AdapterSolicitacao;
-import contrato.com.adapters.AdapterTipoPrestador;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.Solicitacao;
-import contrato.com.model.TipoPrestador;
 import contrato.com.resource.SolicitacaoResource;
-import contrato.com.resource.TipoPrestadorResource;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

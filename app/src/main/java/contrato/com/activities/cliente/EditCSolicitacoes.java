@@ -23,7 +23,8 @@ import retrofit2.Retrofit;
 
 public class EditCSolicitacoes extends AppCompatActivity {
 
-    Integer id;
+    Integer idCliente;
+    Integer solic;
     TextView codigo;
     TextView data;
     TextView status;
@@ -50,11 +51,12 @@ public class EditCSolicitacoes extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        id = intent.getIntExtra("ID", 0);
+        solic = intent.getIntExtra("solic", 0);
+        idCliente = intent.getIntExtra("id", 0);
 
         Retrofit retrofit = APIClient.getClient();
         SolicitacaoResource solicitacaoResource = retrofit.create(SolicitacaoResource.class);
-        Call<Solicitacao> get = solicitacaoResource.getPorId(id);
+        Call<Solicitacao> get = solicitacaoResource.getPorId(solic);
         get.enqueue(new Callback<Solicitacao>() {
             @Override
             public void onResponse(Call<Solicitacao> call, Response<Solicitacao> response) {
@@ -101,7 +103,9 @@ public class EditCSolicitacoes extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class));
+        Intent intent = new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class);
+        intent.putExtra("id", idCliente);
+        startActivity(intent);
     }
 
     public void habilitaAcoes() {
@@ -126,14 +130,16 @@ public class EditCSolicitacoes extends AppCompatActivity {
 
         Retrofit retrofit = APIClient.getClient();
         SolicitacaoResource solicitacaoResource = retrofit.create(SolicitacaoResource.class);
-        Call<Solicitacao> cancelar = solicitacaoResource.put(id, solicitacao);
+        Call<Solicitacao> cancelar = solicitacaoResource.put(solic, solicitacao);
         cancelar.enqueue(new Callback<Solicitacao>() {
             @Override
             public void onResponse(Call<Solicitacao> call, Response<Solicitacao> response) {
                 if (response.isSuccessful()) {
                     Solicitacao sol = response.body();
                     Toast.makeText(getBaseContext(), "Solicitação " + sol.getId() + " cancelada!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class));
+                    Intent intent = new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class);
+                    intent.putExtra("id", idCliente);
+                    startActivity(intent);
                 } else {
                     switch (response.code()) {
                         case 404:
@@ -165,14 +171,18 @@ public class EditCSolicitacoes extends AppCompatActivity {
 
         Retrofit retrofit = APIClient.getClient();
         SolicitacaoResource solicitacaoResource = retrofit.create(SolicitacaoResource.class);
-        Call<Solicitacao> cancelar = solicitacaoResource.put(id, solicitacao);
+        Call<Solicitacao> cancelar = solicitacaoResource.put(solic, solicitacao);
         cancelar.enqueue(new Callback<Solicitacao>() {
             @Override
             public void onResponse(Call<Solicitacao> call, Response<Solicitacao> response) {
                 if (response.isSuccessful()) {
                     Solicitacao sol = response.body();
                     Toast.makeText(getBaseContext(), "Preço para solicitação " + sol.getId() + " aprovado! \n Será criada um ordem de serviço!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class));
+
+                    Intent intent = new Intent(EditCSolicitacoes.this, TMinhasSolicitacoes.class);
+                    intent.putExtra("id", idCliente);
+                    startActivity(intent);
+
                 } else {
                     switch (response.code()) {
                         case 404:

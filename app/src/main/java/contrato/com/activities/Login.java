@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import contrato.com.activities.administrador.Administrador;
 import contrato.com.activities.administrador.EditOrdemServico;
 import contrato.com.activities.administrador.TOrdemServico;
 import contrato.com.activities.cliente.PainelCliente;
+import contrato.com.activities.cliente.TMinhasSolicitacoes;
 import contrato.com.activities.prestador.PainelPrestador;
 import contrato.com.adapters.AdapterOrdemServico;
 import contrato.com.boostrap.APIClient;
@@ -35,13 +37,21 @@ import retrofit2.Retrofit;
 public class Login extends AppCompatActivity {
     Spinner spinner;
     String tipo;
+    EditText usuario;
+    EditText senha;
     Integer id;
+    Integer idCliente = 99999;
+    Integer idTpPrestador= 99991;
+    Integer idStatusSol= 99991;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        usuario = findViewById(R.id.txtLUsuario);
+        senha = findViewById(R.id.txtLSenha);
         spinner = (Spinner) findViewById(R.id.spinnerLogin);
         String[] listItem = getResources().getStringArray(R.array.listLogin);
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, listItem));
@@ -59,21 +69,32 @@ public class Login extends AppCompatActivity {
         tipo = String.valueOf(spinner.getSelectedItem());
 
         if (tipo.equals("Administrador")) {
-            startActivity(new Intent(Login.this, Administrador.class));
+            if (usuario.getText().toString().equals("admin@gmail.com") && senha.getText().toString().equals("123")) {
+                startActivity(new Intent(Login.this, Administrador.class));
+            } else {
+                Toast.makeText(Login.this, "Senha ou usuario incorretos", Toast.LENGTH_SHORT).show();
+            }
         } else if (tipo.equals("Cliente")) {
-
-            //Cliente cliente = buscarCliente();
-            Intent intent = new Intent(Login.this, PainelCliente.class);
-            intent.putExtra("id", 99997);
-            startActivity(intent);
+            if (usuario.getText().toString().equals("cliente@gmail.com") && senha.getText().toString().equals("123")) {
+                Intent intent = new Intent(Login.this, PainelCliente.class);
+                intent.putExtra("id", idCliente);
+                startActivity(intent);
+            } else {
+                Toast.makeText(Login.this, "Senha ou usuario incorretos", Toast.LENGTH_SHORT).show();
+            }
 
         } else if (tipo.equals("Prestador")) {
-            startActivity(new Intent(Login.this, PainelPrestador.class));
+            if (usuario.getText().toString().equals("prestador@gmail.com") && senha.getText().toString().equals("123")) {
+                Intent intent = new Intent(Login.this, PainelPrestador.class);
+                intent.putExtra("idStatusSol", idStatusSol);
+                intent.putExtra("idTpPrestador", idTpPrestador);
+                startActivity(intent);
+            } else {
+                Toast.makeText(Login.this, "Senha ou usuario incorretos", Toast.LENGTH_SHORT).show();
+            }
         } else {
             Toast.makeText(this, "Escolha um tipo", Toast.LENGTH_LONG).show();
         }
     }
-
-
 }
 

@@ -13,9 +13,6 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 
 import contrato.com.R;
-import contrato.com.activities.administrador.AddTipoPrestador;
-import contrato.com.activities.cliente.EditCSolicitacoes;
-import contrato.com.activities.cliente.TMinhasSolicitacoes;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.Solicitacao;
 import contrato.com.model.StatusSolicitacao;
@@ -28,6 +25,8 @@ import retrofit2.Retrofit;
 public class EditPSolicitacoes extends AppCompatActivity {
 
     Integer id;
+    Integer idTpPrestador;
+    Integer idStatusSol;
     TextView codigo;
     TextView data;
     TextView status;
@@ -58,7 +57,8 @@ public class EditPSolicitacoes extends AppCompatActivity {
 
         Intent intent = getIntent();
         id = intent.getIntExtra("ID", 0);
-
+        idTpPrestador = intent.getIntExtra("idTpPrestador", 0);
+        idStatusSol = intent.getIntExtra("idStatusSol", 0);
 
         Retrofit retrofit = APIClient.getClient();
         SolicitacaoResource solicitacaoResource = retrofit.create(SolicitacaoResource.class);
@@ -102,7 +102,10 @@ public class EditPSolicitacoes extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(EditPSolicitacoes.this, TSolicitacoesAbertas.class));
+        Intent intent = new Intent(EditPSolicitacoes.this, TSolicitacoesAbertas.class);
+        intent.putExtra("idTpPrestador", idTpPrestador);
+        intent.putExtra("idStatusSol", idStatusSol);
+        startActivity(intent);
     }
 
     public void habilitaAcoes() {
@@ -133,7 +136,10 @@ public class EditPSolicitacoes extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         Solicitacao sol = response.body();
                         Toast.makeText(getBaseContext(), "Proposta para solicitação " + sol.getId() + " realizada! \nApós aprovação será criada a ordem serviço!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(EditPSolicitacoes.this, TSolicitacoesAbertas.class));
+                        Intent intent = new Intent(EditPSolicitacoes.this, TSolicitacoesAbertas.class);
+                        intent.putExtra("idTpPrestador", idTpPrestador);
+                        intent.putExtra("idStatusSol", idStatusSol);
+                        startActivity(intent);
                     } else {
                         switch (response.code()) {
                             case 404:

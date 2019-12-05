@@ -8,33 +8,23 @@ public class Cliente {
     private String nome;
     private String cpfCnpj;
     private String email;
-    private Date dtNascimento;
     private String identidade;
     private Endereco endereco;
-    private String telefone;
     private Date dtCadastro;
+    private String senha;
 
     public Cliente() {
     }
 
-    public Cliente(int id, String nome, String cpfCnpj, String email, Date dtNascimento, String identidade, Endereco endereco, String telefone, Date dtCadastro) {
+    public Cliente(int id, String nome, String cpfCnpj, String email, String identidade, Endereco endereco, Date dtCadastro, String senha) {
         this.id = id;
         this.nome = nome;
         this.cpfCnpj = cpfCnpj;
         this.email = email;
-        this.dtNascimento = dtNascimento;
         this.identidade = identidade;
         this.endereco = endereco;
-        this.telefone = telefone;
         this.dtCadastro = dtCadastro;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        this.senha = senha;
     }
 
     public int getId() {
@@ -69,14 +59,6 @@ public class Cliente {
         this.email = email;
     }
 
-    public Date getDtNascimento() {
-        return dtNascimento;
-    }
-
-    public void setDtNascimento(Date dtNascimento) {
-        this.dtNascimento = dtNascimento;
-    }
-
     public String getIdentidade() {
         return identidade;
     }
@@ -99,5 +81,13 @@ public class Cliente {
 
     public void setDtCadastro(Date dtCadastro) {
         this.dtCadastro = dtCadastro;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

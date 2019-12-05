@@ -12,7 +12,6 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 
 import contrato.com.R;
-import contrato.com.activities.Login;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.OrdemServico;
 import contrato.com.model.StatusServico;

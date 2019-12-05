@@ -3,38 +3,29 @@ package contrato.com.activities.cliente;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import contrato.com.R;
-import contrato.com.activities.administrador.AddTipoPrestador;
-import contrato.com.activities.administrador.EditTipoPrestador;
-import contrato.com.activities.administrador.TTipoPrestador;
 import contrato.com.adapters.AdapterClienteSolicitacao;
-import contrato.com.adapters.AdapterSolicitacao;
-import contrato.com.adapters.AdapterTipoPrestador;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.Solicitacao;
-import contrato.com.model.TipoPrestador;
 import contrato.com.resource.SolicitacaoResource;
-import contrato.com.resource.TipoPrestadorResource;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class TMinhasSolicitacoes extends AppCompatActivity {
-
+    Integer idCliente;
     public List<Solicitacao> lista = new ArrayList<>();
     public ListView minhaLista;
     public List<Solicitacao> listSolicitacao;
@@ -47,13 +38,18 @@ public class TMinhasSolicitacoes extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Intent intent = getIntent();
+        idCliente = intent.getIntExtra("id", 0);
+
         atualizar();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TMinhasSolicitacoes.this, AddCSolicitacoes.class));
+                Intent intent = new Intent(TMinhasSolicitacoes.this, AddCSolicitacoes.class);
+                intent.putExtra("id", idCliente);
+                startActivity(intent);
             }
         });
     }
@@ -61,9 +57,12 @@ public class TMinhasSolicitacoes extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        Intent intent = getIntent();
+        idCliente = intent.getIntExtra("id", 0);
+
         Retrofit retrofit = APIClient.getClient();
         SolicitacaoResource solicitacaoResource = retrofit.create(SolicitacaoResource.class);
-        Call<List<Solicitacao>> get = solicitacaoResource.getPorCliente();
+        Call<List<Solicitacao>> get = solicitacaoResource.getPorCliente(idCliente);
         get.enqueue(new Callback<List<Solicitacao>>() {
             @Override
             public void onResponse(Call<List<Solicitacao>> call, Response<List<Solicitacao>> response) {
@@ -76,7 +75,8 @@ public class TMinhasSolicitacoes extends AppCompatActivity {
                         @Override
                         public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                             Intent intent = new Intent(TMinhasSolicitacoes.this, EditCSolicitacoes.class);
-                            intent.putExtra("ID", listSolicitacao.get(arg2).getId());
+                            intent.putExtra("id", listSolicitacao.get(arg2).getCliente().getId());
+                            intent.putExtra("solic", listSolicitacao.get(arg2).getId());
                             startActivity(intent);
                             return true;
                         }
@@ -106,14 +106,16 @@ public class TMinhasSolicitacoes extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(TMinhasSolicitacoes.this, PainelCliente.class));
+        Intent intent = new Intent(TMinhasSolicitacoes.this, PainelCliente.class);
+        intent.putExtra("id", idCliente);
+        startActivity(intent);
     }
 
     private void atualizar() {
 
         Retrofit retrofit = APIClient.getClient();
         SolicitacaoResource solicitacaoResource = retrofit.create(SolicitacaoResource.class);
-        Call<List<Solicitacao>> get = solicitacaoResource.get();
+        Call<List<Solicitacao>> get = solicitacaoResource.getPorCliente(idCliente);
         get.enqueue(new Callback<List<Solicitacao>>() {
             @Override
             public void onResponse(Call<List<Solicitacao>> call, Response<List<Solicitacao>> response) {

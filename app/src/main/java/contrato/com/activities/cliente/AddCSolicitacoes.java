@@ -14,9 +14,6 @@ import java.sql.Date;
 import java.util.List;
 
 import contrato.com.R;
-import contrato.com.activities.administrador.AddTipoPrestador;
-import contrato.com.activities.administrador.TTipoPrestador;
-import contrato.com.activities.prestador.CadastroPrestador;
 import contrato.com.boostrap.APIClient;
 import contrato.com.model.Cliente;
 import contrato.com.model.Solicitacao;
@@ -30,7 +27,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class AddCSolicitacoes extends AppCompatActivity {
-
+    Integer idCliente;
     private Spinner tipoPrestador;
     private EditText descricao;
 
@@ -39,12 +36,15 @@ public class AddCSolicitacoes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_csolicitacoes);
         carregarTipoPrestadores();
+
+        Intent intent = getIntent();
+        idCliente = intent.getIntExtra("id", 0);
     }
 
     private void carregarTipoPrestadores() {
         Retrofit retrofit = APIClient.getClient();
         TipoPrestadorResource tipoPrestador = retrofit.create(TipoPrestadorResource.class);
-        Call<List<TipoPrestador>> get = tipoPrestador.get();
+        Call<List<TipoPrestador>> get = tipoPrestador.getAtivos();
         get.enqueue(new Callback<List<TipoPrestador>>() {
             @Override
             public void onResponse(Call<List<TipoPrestador>> call, Response<List<TipoPrestador>> response) {
@@ -78,7 +78,9 @@ public class AddCSolicitacoes extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(AddCSolicitacoes.this, TMinhasSolicitacoes.class));
+        Intent intent = new Intent(AddCSolicitacoes.this, TMinhasSolicitacoes.class);
+        intent.putExtra("id", idCliente);
+        startActivity(intent);
     }
 
     public void adicionar(View view) {
@@ -92,7 +94,9 @@ public class AddCSolicitacoes extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Solicitacao sol = response.body();
                     Toast.makeText(AddCSolicitacoes.this, "Solitação para um " + sol.getTipoPrestador().getDescricao() + " cadastrada!", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(AddCSolicitacoes.this, TMinhasSolicitacoes.class));
+                    Intent intent = new Intent(AddCSolicitacoes.this, TMinhasSolicitacoes.class);
+                    intent.putExtra("ID", idCliente);
+                    startActivity(intent);
                 } else {
                     switch (response.code()) {
                         case 404:
@@ -122,8 +126,10 @@ public class AddCSolicitacoes extends AppCompatActivity {
         Cliente cli = new Cliente();
 
         //iniciando objetos
+        //Status da solicitação
         stSol.setId(99991);
-        cli.setId(99997);
+        //Cliente
+        cli.setId(idCliente);
 
         descricao = findViewById(R.id.txtAddTpDesc);
         tipoPrestador = findViewById(R.id.spinnerSTP);

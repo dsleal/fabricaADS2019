@@ -12,7 +12,7 @@ public class APIClient {
 
     private static Retrofit retrofit = null;
 
-    public static final String ENDPOINT = "http://192.168.137.1:8080/api/";
+    public static final String ENDPOINT = "https://mighty-wave-10512.herokuapp.com/api/";
 
     public static Retrofit getClient() {
 

@@ -30,19 +30,7 @@
         android:layout_below="@id/AddTpcabecalho"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txtView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txtOSCod"
-            android:textStyle="bold|italic" />
-
-        <TextView
-            android:id="@+id/txtOSCod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
+       <TextView
             android:id="@+id/txtView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

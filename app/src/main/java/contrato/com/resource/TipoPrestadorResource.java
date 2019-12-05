@@ -14,7 +14,10 @@ import retrofit2.http.Path;
 
 public interface TipoPrestadorResource {
     @GET("tipoprestadores")
-    Call<List<TipoPrestador>> get();
+    Call<List<TipoPrestador>> getAtivos();
+
+    @GET("tipoprestadores/todos")
+    Call<List<TipoPrestador>> getTodos();
 
     @GET("tipoprestadores/{id}")
     Call<TipoPrestador> getPorId(@Path("id") Integer id);
